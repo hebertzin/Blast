@@ -1,11 +1,48 @@
-## Aplicação onde se pode fazer o upload de arquivos na nuvem utlizando a AWS
+## Upload-s3
 
-**Funcionalidades**
+## Descrição
+
+ Este projeto foi desenvolvido como uma demonstração, com o objetivo principal de aprimorar habilidades na manipulação de dados na nuvem,
+ com uma arquitetura muito simples e fácil de manter.
+
+ **obs** : Decidi optar em fazer um projeto com arquitetura simples porque esse é um projeto simples .
+ devemos dosar quanto colocar complexidade em um projeto.
+ 
+## **Tecnologias utlizadas**
+
+- **Node js**
+- **Typescript**
+- **Aws-sdk**
+- **Express**
+- **husky**
+- **prettier**
+- **zod**
+
+## **Funcionalidades**
 
 - [x] É possivel realizar upload de um arquivo
 - [x] É possivel realizar upload de multiplos arquivo por vez
 - [x] É possivel deletar um arquivo
 - [x] É possivel pegar dados de um arquivo
 - [x] É possivel listar todos os arquivos
+- [ ] É possivel listar arquivos pelos tipos. ex : **pdf**, **jpeg** .
 
-**Endpoints da aplicação**
+## **Endpoints da aplicação**
+
+- **POST** `/upload` : faz o upload de um unico arquivo na nuvem
+- **POST** `/uploads` : faz o upload de vários arquivos na nuvem
+- **GET** `/upload/:key` : retorna dados de um arquivo, ex : bytes, nome dentre outros...
+- **GET** `/upload/all` : retorna todos os arquivos
+- **DELETE** `/upload/:key` : apaga um arquivo
+
+
+## Como rodar esse projeto 
+
+- Cerfique-se de ter o node intalado
+- Clone esse repositorio `git clone : https://github.com/hebertsanto/upload-s3.git`
+- Navegue até o projeto e rode o seguinte comando `npm install`
+- Não se esqueça de configurar suas credencias da aws
+- Depois é so rodar o servidor com o seguinte comando: `npm run dev`
+ 
+ 
+
