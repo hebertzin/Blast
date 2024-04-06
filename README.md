@@ -43,6 +43,13 @@
 - Navegue até o projeto e rode o seguinte comando `npm install`
 - Não se esqueça de configurar suas credencias da aws
 - Depois é so rodar o servidor com o seguinte comando: `npm run dev`
+
+
+## Console da aws com alguns arquivos
+
+![Captura de tela de 2024-04-06 20-31-11](https://github.com/hebertsanto/upload-s3/assets/108555424/a3a31951-33d3-4955-8458-62c30c4ad5d4)
+
+
  
  
 
