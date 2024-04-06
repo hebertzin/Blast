@@ -1,12 +1,12 @@
-import multer from "multer";
+import multer from 'multer'
 
-const config = multer.diskStorage({
+const config: multer.StorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "/tmp");
+    cb(null, '/tmp')
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
+    cb(null, Date.now() + '-' + file.originalname)
   },
-});
+})
 
-export const storage = multer({ storage: config });
+export const storage = multer({ storage: config })
