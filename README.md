@@ -40,8 +40,10 @@
 
 - Cerfique-se de ter o node intalado
 - Clone esse repositorio `git clone : https://github.com/hebertsanto/upload-s3.git`
-- Navegue até o projeto e rode o seguinte comando `npm install`
-- Não se esqueça de configurar suas credencias da aws
+- Navegue até o projeto e rode o seguinte comando `npm install
+ 
+- Crie um arquivo `.env` e crie as varáveis de ambiente  com as suas credencias do s3 da aws.
+  veja como definir as variáveis no arquivo `.env.exemple`
 - Depois é so rodar o servidor com o seguinte comando: `npm run dev`
 
 
