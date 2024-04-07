@@ -6,5 +6,5 @@ export const s3 = new S3Client({
     accessKeyId: env.ACCESS_KEY,
     secretAccessKey: env.SECRET_KEY,
   },
-  region: 'us-east-2',
+  region: env.REGION,
 })
