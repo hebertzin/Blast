@@ -39,16 +39,16 @@ devemos dosar quanto colocar complexidade em um projeto.
 
 - Cerfique-se de ter o node intalado
 - Clone esse repositorio `git clone : https://github.com/hebertsanto/upload-s3.git`
-<<<<<<< HEAD
+  <<<<<<< HEAD
 - Navegue até o projeto e rode o seguinte comando `npm install
 
-- Crie um arquivo `.env` e crie as varáveis de ambiente com as suas credencias do s3 da aws.
-=======
+- # Crie um arquivo `.env` e crie as varáveis de ambiente com as suas credencias do s3 da aws.
 - Navegue até o projeto e rode o seguinte comando `npm install`
- 
-- Crie um arquivo `.env` e crie as variáveis de ambiente  com as suas credencias do s3 da aws.
->>>>>>> 3163b17ab2b278c893a17889efee7fdd035cf375
-  veja como definir as variáveis no arquivo `.env.exemple`
+
+- Crie um arquivo `.env` e crie as variáveis de ambiente com as suas credencias do s3 da aws.
+
+  > > > > > > > 3163b17ab2b278c893a17889efee7fdd035cf375
+  > > > > > > > veja como definir as variáveis no arquivo `.env.exemple`
 
 - Depois é so rodar o servidor com o seguinte comando: `npm run dev`
 
