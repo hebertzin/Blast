@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import { s3 } from '../aws'
 
 export const listAllFilesController = async (
-  request: Request,
+  _request: Request,
   response: Response,
 ) => {
   try {

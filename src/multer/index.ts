@@ -1,10 +1,10 @@
 import multer from 'multer'
 
 const config: multer.StorageEngine = multer.diskStorage({
-  destination: (req, file, cb) => {
+  destination: (_req, _file, cb) => {
     cb(null, '/tmp')
   },
-  filename: (req, file, cb) => {
+  filename: (_req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname)
   },
 })
