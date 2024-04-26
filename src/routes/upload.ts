@@ -10,7 +10,7 @@ export const upload = Router()
 
 upload.post('/upload', storage.single('file'), uploadController)
 
-upload.post('/uploads', storage.array('files'), multiplesUploadsController)
+upload.post('/multi-upload', storage.array('files'), multiplesUploadsController)
 
 upload.delete('/upload/:key', deleteUploadController)
 

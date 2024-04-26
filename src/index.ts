@@ -1,12 +1,14 @@
 import express from 'express'
-import { env } from './env'
+import { env } from './config/env'
 import { upload } from './routes/upload'
+import { logger } from './config/logger/winston'
 
 const app = express()
 
 app.use(express.json())
-app.use(upload)
+
+app.use('/api/v1', upload)
 
 app.listen(env.PORT, () => {
-  console.log(`server is running`)
+  logger.info('Server is running')
 })

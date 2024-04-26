@@ -2,12 +2,12 @@
 
 ## Descrição
 
- Este projeto foi desenvolvido como uma demonstração, com o objetivo principal de aprimorar habilidades na manipulação de dados na nuvem,
- com uma arquitetura muito simples e fácil de manter.
+Este projeto foi desenvolvido como uma demonstração, com o objetivo principal de aprimorar habilidades na manipulação de dados na nuvem,
+com uma arquitetura muito simples e fácil de manter.
 
- **obs** : Decidi optar em fazer um projeto com arquitetura simples porque esse é um projeto simples .
- devemos dosar quanto colocar complexidade em um projeto.
- 
+**obs** : Decidi optar em fazer um projeto com arquitetura simples porque esse é um projeto simples .
+devemos dosar quanto colocar complexidade em um projeto.
+
 ## **Tecnologias utlizadas**
 
 - **Node js**
@@ -35,23 +35,16 @@
 - **GET** `/upload/all` : retorna todos os arquivos
 - **DELETE** `/upload/:key` : apaga um arquivo
 
-
-## Como rodar esse projeto 
+## Como rodar esse projeto
 
 - Cerfique-se de ter o node intalado
 - Clone esse repositorio `git clone : https://github.com/hebertsanto/upload-s3.git`
 - Navegue até o projeto e rode o seguinte comando `npm install
- 
-- Crie um arquivo `.env` e crie as varáveis de ambiente  com as suas credencias do s3 da aws.
+
+- Crie um arquivo `.env` e crie as varáveis de ambiente com as suas credencias do s3 da aws.
   veja como definir as variáveis no arquivo `.env.exemple`
 - Depois é so rodar o servidor com o seguinte comando: `npm run dev`
-
 
 ## Console da aws com alguns arquivos
 
 ![Captura de tela de 2024-04-06 20-31-11](https://github.com/hebertsanto/upload-s3/assets/108555424/a3a31951-33d3-4955-8458-62c30c4ad5d4)
-
-
- 
- 
-
