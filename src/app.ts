@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Request, Response } from 'express'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import compression from 'compression'
@@ -26,6 +26,14 @@ app.use(
     ].join(' ')
   }),
 )
+
+app.get('/health', (_req: Request, res: Response) => {
+  return res.status(200).json({
+    status: 'up',
+    message: 'Aplication is alive!',
+    timestamp: new Date().toISOString(),
+  })
+})
 
 app.use('/api/v1', upload)
 
