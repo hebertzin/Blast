@@ -1,34 +1,25 @@
-import { HeadObjectCommand } from '@aws-sdk/client-s3'
 import { Request, Response } from 'express'
-import { s3 } from '../aws'
+import { ListFileByIdService } from '../services/list-file-by-id'
 
-export const listFileByIdController = async (
-  request: Request,
-  response: Response,
-) => {
-  try {
-    const { key } = request.params
+export class FileController {
+  private listFileByIdService: ListFileByIdService
+  constructor(listById: ListFileByIdService) {
+    this.listFileByIdService = listById
+  }
 
-    const params = {
-      Bucket: 'storage-app',
-      Key: key as string,
+  public async handle(request: Request, response: Response): Promise<Response> {
+    try {
+      const { key } = request.params
+
+      const fileDetails = await this.listFileByIdService.invoke(key)
+
+      return response.status(HttpStatusCode.Ok).json({
+        file: fileDetails,
+      })
+    } catch (error) {
+      return response
+        .status(HttpStatusCode.InternalServerError)
+        .json({ message: 'An error has occurred' })
     }
-
-    const data = await s3.send(new HeadObjectCommand(params))
-
-    const fileDetails = {
-      key: key,
-      size: data.ContentLength,
-      lastModified: data.LastModified,
-      contentType: data.ContentType,
-    }
-
-    return response.status(HttpStatusCode.Ok).json({
-      file: fileDetails,
-    })
-  } catch (error) {
-    return response
-      .status(HttpStatusCode.InternalServerError)
-      .json({ message: 'Some error has been ocurred' })
   }
 }
