@@ -23,13 +23,12 @@ export const listFileByIdController = async (
       contentType: data.ContentType,
     }
 
-    return response.status(200).json({
+    return response.status(HttpStatusCode.Ok).json({
       file: fileDetails,
     })
   } catch (error) {
-    return response.status(500).json({
-      message: 'Some error ocurred',
-      error: 'error',
-    })
+    return response
+      .status(HttpStatusCode.InternalServerError)
+      .json({ message: 'Some error has been ocurred' })
   }
 }

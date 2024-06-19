@@ -29,13 +29,10 @@ export const multiplesUploadsController = async (
 
     await Promise.all(upload)
 
-    return response.status(201).json({
-      message: 'All files upload sucessfully',
-    })
+    return response.status(HttpStatusCode.Created)
   } catch (error) {
-    return response.status(500).json({
-      message: 'some error ocurred',
-      error: error,
-    })
+    return response
+      .status(HttpStatusCode.Created)
+      .json({ message: 'Some error has been ocurred' })
   }
 }
