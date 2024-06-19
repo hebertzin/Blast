@@ -1,38 +1,30 @@
-import { PutObjectCommand } from '@aws-sdk/client-s3'
 import { Request, Response } from 'express'
-import { s3 } from '../aws'
+import { UploadFilesService } from '../services/add-files'
 
-export const multiplesUploadsController = async (
-  request: Request,
-  response: Response,
-) => {
-  try {
-    const files = request?.files as Express.Multer.File[]
+export class UploadFilesController {
+  private uploadFilesService: UploadFilesService
 
-    if (!files || files.length == 0) {
-      return response.status(400).json({
-        message: 'No files sent',
-      })
-    }
-
-    const upload = files.map(async (file: Express.Multer.File) => {
-      const fileContent = file.buffer
-
-      const params = {
-        Bucket: 'storage-app',
-        Key: file.originalname,
-        Body: fileContent,
+  constructor(uploadFiles: UploadFilesService) {
+    this.uploadFilesService = uploadFiles
+  }
+  public async handle(request: Request, response: Response): Promise<Response> {
+    try {
+      const files = request?.files as Express.Multer.File[]
+      if (!files || files.length === 0) {
+        return response.status(HttpStatusCode.BadRequest).json({
+          message: 'No files sent',
+        })
       }
 
-      await s3.send(new PutObjectCommand(params))
-    })
+      await this.uploadFilesService.invoke(files)
 
-    await Promise.all(upload)
-
-    return response.status(HttpStatusCode.Created)
-  } catch (error) {
-    return response
-      .status(HttpStatusCode.Created)
-      .json({ message: 'Some error has been ocurred' })
+      return response
+        .status(HttpStatusCode.Created)
+        .json({ message: 'Files uploaded successfully' })
+    } catch (error) {
+      return response
+        .status(HttpStatusCode.InternalServerError)
+        .json({ message: 'An error has occurred' })
+    }
   }
 }

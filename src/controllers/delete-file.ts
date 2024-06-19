@@ -1,25 +1,25 @@
-import { DeleteObjectCommand } from '@aws-sdk/client-s3'
+import { DeleteFileService } from '../services/delete-file'
 import { Request, Response } from 'express'
-import { s3 } from '../aws'
 
-export const deleteUploadController = async (
-  request: Request,
-  response: Response,
-) => {
-  try {
-    const { key } = request.params
+export class DeleteFileController {
+  private deleteFileService: DeleteFileService
+  constructor(deleteService: DeleteFileService) {
+    this.deleteFileService = deleteService
+  }
 
-    const params = {
-      Bucket: 'storage-app',
-      Key: key,
+  public async handle(request: Request, response: Response): Promise<Response> {
+    try {
+      const { key } = request.params
+
+      await this.deleteFileService.invoke(key)
+
+      return response
+        .status(HttpStatusCode.Ok)
+        .json({ message: 'File deleted successfully' })
+    } catch (error) {
+      return response
+        .status(HttpStatusCode.InternalServerError)
+        .json({ message: 'An error has occurred' })
     }
-
-    await s3.send(new DeleteObjectCommand(params))
-
-    return response.status(HttpStatusCode.Ok)
-  } catch (error) {
-    return response
-      .status(HttpStatusCode.InternalServerError)
-      .json({ message: 'Some error has been ocurred' })
   }
 }

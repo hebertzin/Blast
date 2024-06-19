@@ -1,32 +1,30 @@
-import { PutObjectCommand } from '@aws-sdk/client-s3'
 import { Request, Response } from 'express'
-import { s3 } from '../aws'
+import { UploadFileService } from '../services/add-file'
 
-export const uploadController = async (
-  request: Request,
-  response: Response,
-) => {
-  try {
-    const file = request.file
+export class UploadController {
+  private uploadService: UploadFileService
 
-    const fileName = file?.originalname as string
+  constructor(uploadService: UploadFileService) {
+    this.uploadService = uploadService
+  }
 
-    const bucketName = 'storage-app'
+  public handle = async (request: Request, response: Response) => {
+    try {
+      const file = request.file
 
-    const params = {
-      Bucket: bucketName,
-      Key: fileName,
-      Body: file?.buffer,
+      if (!file) {
+        return response
+          .status(HttpStatusCode.BadRequest)
+          .json({ message: 'No file provided' })
+      }
+
+      const data = await this.uploadService.invoke(file)
+
+      return response.status(HttpStatusCode.Created).json(data)
+    } catch (error) {
+      return response
+        .status(HttpStatusCode.InternalServerError)
+        .json({ message: 'Some error has occurred' })
     }
-
-    const command = new PutObjectCommand(params)
-
-    const data = await s3.send(command)
-
-    return response.status(HttpStatusCode.Created).json(data)
-  } catch (error) {
-    return response
-      .status(HttpStatusCode.InternalServerError)
-      .json({ message: 'Some error has been ocurred' })
   }
 }
