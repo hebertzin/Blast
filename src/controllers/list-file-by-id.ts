@@ -1,7 +1,8 @@
 import { Request, Response } from 'express'
 import { ListFileByIdService } from '../services/list-file-by-id'
+import { s3 } from '../aws'
 
-export class FileController {
+export class ListFileByIdController {
   private listFileByIdService: ListFileByIdService
   constructor(listById: ListFileByIdService) {
     this.listFileByIdService = listById
@@ -23,3 +24,7 @@ export class FileController {
     }
   }
 }
+
+export const listFileByIdControllerHandler = new ListFileByIdController(
+  new ListFileByIdService(s3),
+)

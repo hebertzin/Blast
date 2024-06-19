@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { UploadFileService } from '../services/add-file'
+import { s3 } from '../aws'
 
 export class UploadController {
   private uploadService: UploadFileService
@@ -28,3 +29,7 @@ export class UploadController {
     }
   }
 }
+
+export const uploadFileControllerHandler = new UploadController(
+  new UploadFileService(s3, 'storage-app'),
+)

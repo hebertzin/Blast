@@ -1,3 +1,4 @@
+import { s3 } from '../aws'
 import { DeleteFileService } from '../services/delete-file'
 import { Request, Response } from 'express'
 
@@ -23,3 +24,7 @@ export class DeleteFileController {
     }
   }
 }
+
+export const deleteFileControllerHandler = new DeleteFileController(
+  new DeleteFileService(s3),
+)
