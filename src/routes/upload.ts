@@ -1,19 +1,26 @@
 import { Router } from 'express'
 import { storage } from '../utils/multer'
-import { uploadController } from '../controllers/add-file'
-import { multiplesUploadsController } from '../controllers/add-multiples-files'
-import { deleteUploadController } from '../controllers/delete-file'
-import { listAllFilesController } from '../controllers/list-all-files'
-import { listFileByIdController } from '../controllers/list-file-by-id'
-
+import { uploadFileControllerHandler } from '../controllers/add-file'
+import { uploadFilesControllerHandler } from '../controllers/add-multiples-files'
+import { deleteFileControllerHandler } from '../controllers/delete-file'
+import { listFilesControllerHandler } from '../controllers/list-all-files'
+import { listFileByIdControllerHandler } from '../controllers/list-file-by-id'
 export const upload = Router()
 
-upload.post('/upload', storage.single('file'), uploadController)
+upload.post(
+  '/upload',
+  storage.single('file'),
+  uploadFileControllerHandler.handle,
+)
 
-upload.post('/multi-upload', storage.array('files'), multiplesUploadsController)
+upload.post(
+  '/multi-upload',
+  storage.array('files'),
+  uploadFilesControllerHandler.handle,
+)
 
-upload.delete('/upload/:key', deleteUploadController)
+upload.delete('/upload/:key', deleteFileControllerHandler.handle)
 
-upload.get('/uploads/all', listAllFilesController)
+upload.get('/uploads/all', listFilesControllerHandler.handle)
 
-upload.get('/upload/:key', listFileByIdController)
+upload.get('/upload/:key', listFileByIdControllerHandler.handle)

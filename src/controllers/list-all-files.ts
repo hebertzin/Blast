@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { ListFilesService } from '../services/list-files'
-import { S3Client } from '@aws-sdk/client-s3'
+import { s3 } from '../aws'
 
 export class ListFilesController {
   private listFilesService: ListFilesService
@@ -24,3 +24,7 @@ export class ListFilesController {
     }
   }
 }
+
+export const listFilesControllerHandler = new ListFilesController(
+  new ListFilesService(s3),
+)
