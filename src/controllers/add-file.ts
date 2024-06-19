@@ -23,14 +23,10 @@ export const uploadController = async (
 
     const data = await s3.send(command)
 
-    return response.status(201).json({
-      message: 'Upload sucessfully',
-      data,
-    })
+    return response.status(HttpStatusCode.Created).json(data)
   } catch (error) {
-    return response.status(500).json({
-      message: 'some error ocurred',
-      error: error,
-    })
+    return response
+      .status(HttpStatusCode.InternalServerError)
+      .json({ message: 'Some error has been ocurred' })
   }
 }

@@ -15,14 +15,12 @@ export const listAllFilesController = async (
 
     const files = data.Contents
 
-    return response.status(200).json({
-      messages: 'All files',
+    return response.status(HttpStatusCode.Ok).json({
       files: files,
     })
   } catch (error) {
-    return response.status(500).json({
-      message: 'Some error ocurred',
-      error: error,
-    })
+    return response
+      .status(HttpStatusCode.InternalServerError)
+      .json({ message: 'Some error has been ocurred' })
   }
 }

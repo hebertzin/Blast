@@ -16,13 +16,10 @@ export const deleteUploadController = async (
 
     await s3.send(new DeleteObjectCommand(params))
 
-    return response.status(201).json({
-      message: 'Delete sucessfully',
-    })
+    return response.status(HttpStatusCode.Ok)
   } catch (error) {
-    return response.status(500).json({
-      message: 'some error ocurred',
-      error: error,
-    })
+    return response
+      .status(HttpStatusCode.InternalServerError)
+      .json({ message: 'Some error has been ocurred' })
   }
 }
