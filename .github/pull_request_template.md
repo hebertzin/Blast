@@ -9,6 +9,7 @@ Check the relevant options.
 - [ ] Bug fix
 - [ ] New functionality
 - [ ] Performance improvement
+- [ ] other
 
 ## Verification
 
