@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { ListFileByIdService } from '../services/list-file-by-id'
 import { s3 } from '../aws'
+import { HttpStatusCode } from '../utils/http-status'
 
 export class ListFileByIdController {
   private listFileByIdService: ListFileByIdService

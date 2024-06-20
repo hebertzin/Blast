@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { UploadFileService } from '../services/add-file'
 import { s3 } from '../aws'
+import { HttpStatusCode } from '../utils/http-status'
 
 export class UploadController {
   private uploadService: UploadFileService

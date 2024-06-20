@@ -2,7 +2,7 @@
 
 ## Overview
 
-I did this project to train concepts such as cloud computing using AWS services and  I carried out the project using object-oriented programming and following good practices in software development.
+I did this project to train concepts such as cloud computing using AWS services and I carried out the project using object-oriented programming and following good practices in software development.
 
 ## **Techs**
 
@@ -36,7 +36,6 @@ I did this project to train concepts such as cloud computing using AWS services 
 - **GET** `/api/v1/files/:id`: Returns data from a file, e.g. bytes, name, among others...
 - **GET** `/api/v1/files` : Returns all files
 - **DELETE** `/api/v1/files/:id` : Deletes a file
-
 
 ## How to run this project
 
