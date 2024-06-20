@@ -1,4 +1,4 @@
-enum HttpStatusCode {
+export enum HttpStatusCode {
   Created = 201,
   Conflict = 209,
   BadRequest = 400,
