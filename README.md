@@ -1,50 +1,58 @@
 ## Upload-s3
 
-## Descrição
+## Overview
 
-Este projeto foi desenvolvido como uma demonstração, com o objetivo principal de aprimorar habilidades na manipulação de dados na nuvem,
-com uma arquitetura muito simples e fácil de manter.
+I did this project to train concepts such as cloud computing using AWS services and  I carried out the project using object-oriented programming and following good practices in software development.
 
-**obs** : Decidi optar em fazer um projeto com arquitetura simples porque esse é um projeto simples .
-devemos dosar quanto colocar complexidade em um projeto.
-
-## **Tecnologias utlizadas**
+## **Techs**
 
 - **Node js**
 - **Typescript**
-- **Aws-sdk**
+- **AWS-SDK**
+- **EC2**
+- **S3**
+- **Docker**
 - **Express**
-- **husky**
-- **prettier**
-- **zod**
+- **Git**
+- **Github actions**
+- **Husky**
+- **Prettier**
+- **Eslint**
+- **Zod**
 
-## **Funcionalidades**
+## **Features**
 
-- [x] É possivel realizar upload de um arquivo
-- [x] É possivel realizar upload de multiplos arquivo por vez
-- [x] É possivel deletar um arquivo
-- [x] É possivel pegar dados de um arquivo
-- [x] É possivel listar todos os arquivos
-- [ ] É possivel listar arquivos pelos tipos. ex : **pdf**, **jpeg** .
+- [x] It is possible to upload a file
+- [x] It is possible to upload multiple files at a time
+- [x] It is possible to delete a file
+- [x] It is possible to get data from a file
+- [x] It is possible to list all files
+- [ ] It is possible to list files by type. ex: **Pdf**, **Jpeg** .
 
-## **Endpoints da aplicação**
+## **Endpoints**
 
-- **POST** `/upload` : faz o upload de um unico arquivo na nuvem
-- **POST** `/uploads` : faz o upload de vários arquivos na nuvem
-- **GET** `/upload/:key` : retorna dados de um arquivo, ex : bytes, nome dentre outros...
-- **GET** `/upload/all` : retorna todos os arquivos
-- **DELETE** `/upload/:key` : apaga um arquivo
+- **POST** `/api/v1/files/upload`: Uploads a single file to the cloud
+- **POST** `/api/v1/files/multi-upload` : Uploads multiple files to the cloud
+- **GET** `/api/v1/files/:id`: Returns data from a file, e.g. bytes, name, among others...
+- **GET** `/api/v1/files` : Returns all files
+- **DELETE** `/api/v1/files/:id` : Deletes a file
 
-## Como rodar esse projeto
 
-- Cerfique-se de ter o node intalado
-- Clone esse repositorio `git clone : https://github.com/hebertsanto/upload-s3.git`
+## How to run this project
 
-- Navegue até o projeto e rode o seguinte comando `npm install`
-- Crie um arquivo `.env` e crie as varáveis de ambiente com as suas credencias do s3 da aws.
-- veja como definir as variáveis no arquivo `.env.exemple`
-- Depois é so rodar o servidor com o seguinte comando: `npm run dev`
+- Make sure you have the **node**, **docker** installed
+- Clone this repository `git clone: ​​https://github.com/hebertsanto/upload-s3.git`
 
-## Console da aws com alguns arquivos
+- Navigate to the project and run the following command `npm install`
+- Create a `.env` file and create environment variables with your AWS s3 credentials, don't forget that.
+- See how to define the variables in the `.env.exemple` file
+- Then just run the server with the following command: `npm run dev`
+
+## Run with docker
+
+- In the json package I created a script to run docker, all you need to do is run the command `npm run docker:build`
+- After that, the application image will be created.
+
+## AWS console with some files
 
 ![Captura de tela de 2024-04-06 20-31-11](https://github.com/hebertsanto/upload-s3/assets/108555424/a3a31951-33d3-4955-8458-62c30c4ad5d4)

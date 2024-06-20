@@ -10,9 +10,9 @@ export class ListFileByIdController {
 
   public async handle(request: Request, response: Response): Promise<Response> {
     try {
-      const { key } = request.params
+      const { id } = request.params
 
-      const fileDetails = await this.listFileByIdService.invoke(key)
+      const fileDetails = await this.listFileByIdService.invoke(id)
 
       return response.status(HttpStatusCode.Ok).json({
         file: fileDetails,

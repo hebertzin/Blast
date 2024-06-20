@@ -10,9 +10,9 @@ export class DeleteFileController {
 
   public async handle(request: Request, response: Response): Promise<Response> {
     try {
-      const { key } = request.params
+      const { id } = request.params
 
-      await this.deleteFileService.invoke(key)
+      await this.deleteFileService.invoke(id)
 
       return response
         .status(HttpStatusCode.Ok)

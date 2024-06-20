@@ -10,21 +10,21 @@ import { fileValidatorMiddleware } from '../middleware/validate-files'
 export const upload = Router()
 
 upload.post(
-  '/upload',
+  '/files/upload',
   storage.single('file'),
   fileValidatorMiddleware.validateFile.bind(fileValidatorMiddleware),
   uploadFileControllerHandler.handle,
 )
 
 upload.post(
-  '/multi-upload',
+  '/files/multi-upload',
   storage.array('files'),
   fileValidatorMiddleware.validateFile.bind(fileValidatorMiddleware),
   uploadFilesControllerHandler.handle,
 )
 
-upload.delete('/upload/:key', deleteFileControllerHandler.handle)
+upload.delete('/files/:id', deleteFileControllerHandler.handle)
 
-upload.get('/uploads/all', listFilesControllerHandler.handle)
+upload.get('/files', listFilesControllerHandler.handle)
 
-upload.get('/upload/:key', listFileByIdControllerHandler.handle)
+upload.get('/files/:id', listFileByIdControllerHandler.handle)
