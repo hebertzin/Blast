@@ -7,10 +7,10 @@ export class DeleteFileService {
     this.s3 = s3
   }
 
-  public async invoke(key: string): Promise<void> {
+  public async invoke(file_id: string): Promise<void> {
     const params = {
       Bucket: 'storage-app',
-      Key: key,
+      Key: file_id,
     }
 
     await this.s3.send(new DeleteObjectCommand(params))
