@@ -10,19 +10,18 @@ describe('/api/v1/files/:id', () => {
       .get(`/api/v1/files/${fileId}`)
       .expect('Content-Type', /json/)
 
+    expect(response.headers['content-type']).toMatch(/json/)
+    expect(response.status).toBe(HttpStatusCode.Ok)
     const file = response.body.file
 
-    expect(response.status).toBe(HttpStatusCode.Ok)
-
     expect(file).toBeDefined()
+    expect(file).toHaveProperty('key')
+    expect(file).toHaveProperty('lastModified')
+    expect(file).toHaveProperty('contentType')
     expect(file.key).toBe(fileId)
 
     expect(typeof file.key).toBe('string')
     expect(typeof file.lastModified).toBe('string')
     expect(typeof file.contentType).toBe('string')
-
-    expect(file).toHaveProperty('key')
-    expect(file).toHaveProperty('lastModified')
-    expect(file).toHaveProperty('contentType')
   })
 })
