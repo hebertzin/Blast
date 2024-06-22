@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { ListFileByIdService } from '../services/list-file-by-id'
+import { ListFileByIdService } from '../services/list-file-by-id-service'
 import { s3 } from '../aws'
 import { HttpStatusCode } from '../utils/http-status'
 
