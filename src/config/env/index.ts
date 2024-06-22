@@ -1,24 +1,19 @@
 import 'dotenv/config'
 import { z } from 'zod'
+import * as dotenv from 'dotenv'
 
+dotenv.config()
 const envSchema = z.object({
-  PORT: z.coerce.number(),
+  PORT: z.coerce.number().default(3000),
   ACCESS_KEY: z.string(),
   SECRET_KEY: z.string(),
   REGION: z.string(),
 })
 
-let _env
-const isTestEnvironment = process.env.NODE_ENV === 'test'
+const _env = envSchema.safeParse(process.env)
 
-if (isTestEnvironment) {
-  _env = envSchema.partial().safeParse(process.env)
-} else {
-  _env = envSchema.strict().safeParse(process.env)
-}
-
-if (!_env.success) {
-  throw new Error('Invalid environment variables')
+if (_env.success == false) {
+  throw new Error(`Error with env variables : ${_env.error}`)
 }
 
 export const env = _env.data
