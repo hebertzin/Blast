@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { UploadFileService } from '../services/add-file'
+import { UploadFileService } from '../services/upload-file-service'
 import { s3 } from '../aws'
 import { HttpStatusCode } from '../utils/http-status'
 

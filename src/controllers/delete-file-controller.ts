@@ -1,5 +1,5 @@
 import { s3 } from '../aws'
-import { DeleteFileService } from '../services/delete-file'
+import { DeleteFileService } from '../services/delete-files-service'
 import { Request, Response } from 'express'
 import { HttpStatusCode } from '../utils/http-status'
 
