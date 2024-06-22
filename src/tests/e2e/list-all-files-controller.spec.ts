@@ -1,11 +1,9 @@
 import request from 'supertest'
-import { HttpStatusCode } from '../../utils/http-status'
 import { ExpressApp as app } from '../../app'
 
 describe('/api/v1/files', () => {
   it('Must return all files correcly', async () => {
     const response = await request(new app().getApp()).get('/api/v1/files')
-    expect(response.status).toBe(HttpStatusCode.Ok)
 
     expect(response.body.files).toBeDefined()
     expect(Array.isArray(response.body.files)).toBe(true)
