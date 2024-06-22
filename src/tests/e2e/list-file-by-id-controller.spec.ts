@@ -12,9 +12,10 @@ describe('/api/v1/files/:id', () => {
 
     const file = response.body.file
 
-    expect(response.status).toEqual(HttpStatusCode.Ok)
+    expect(response.status).toBe(HttpStatusCode.Ok)
+
     expect(file).toBeDefined()
-    expect(file.key).toEqual(fileId)
+    expect(file.key).toBe(fileId)
 
     expect(typeof file.key).toBe('string')
     expect(typeof file.lastModified).toBe('string')

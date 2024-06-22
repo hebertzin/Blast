@@ -11,7 +11,8 @@
     "docker:build": "docker build -t uploads3 .",
     "prepare": "husky install",
     "build": "tsc",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "tests:e2e": "jest src/tests/e2e"
   },
   "keywords": [],
   "author": "",
