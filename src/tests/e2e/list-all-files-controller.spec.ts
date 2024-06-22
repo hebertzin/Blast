@@ -1,14 +1,18 @@
 import request from 'supertest'
 import { ExpressApp as app } from '../../app'
+import { HttpStatusCode } from '../../utils/http-status'
 
 describe('/api/v1/files', () => {
-  it('Must return all files correcly', async () => {
-    const response = await request(new app().getApp()).get('/api/v1/files')
+  it('Must return all files correctly', async () => {
+    const response = await request(new app().getApp())
+      .get('/api/v1/files')
+      .expect('Content-Type', /json/)
 
+    expect(response.status).toBe(HttpStatusCode.Ok)
     expect(response.body.files).toBeDefined()
     expect(Array.isArray(response.body.files)).toBe(true)
 
-    response.body.files.forEach((file) => {
+    response.body.files.forEach((file: any) => {
       expect(file).toHaveProperty('Key')
       expect(file).toHaveProperty('LastModified')
       expect(file).toHaveProperty('ETag')
