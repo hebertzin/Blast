@@ -53,4 +53,8 @@ export class ExpressApp {
       logger.info('Sever is running !')
     })
   }
+
+  public getApp(): Express {
+    return this.expressApp
+  }
 }

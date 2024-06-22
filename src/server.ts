@@ -1,6 +1,7 @@
 import { ExpressApp } from './app'
 import { env } from './config/env'
 
-const app = new ExpressApp()
+export const app = new ExpressApp()
 
-app.start(env.PORT)
+const port = env.PORT || 5000
+app.start(port)
