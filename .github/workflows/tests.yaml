@@ -35,4 +35,4 @@ jobs:
         run: npm ci
 
       - name: Run integration tests
-        run: npm run tests:integration
+        run: npm run tests:e2e

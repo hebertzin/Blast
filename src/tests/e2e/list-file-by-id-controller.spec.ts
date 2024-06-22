@@ -9,10 +9,12 @@ describe('/api/v1/files/:id', () => {
     const response = await request(new app().getApp())
       .get(`/api/v1/files/${fileId}`)
       .expect('Content-Type', /json/)
+      .expect(HttpStatusCode.Ok)
 
     const file = response.body.file
 
     expect(response.status).toBe(HttpStatusCode.Ok)
+
     expect(file).toBeDefined()
     expect(file.key).toBe(fileId)
 
