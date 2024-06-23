@@ -36,5 +36,5 @@ export class UploadFileService {
       this.logger.error('Error uploading file:', error)
       throw new Error('An error occurred while uploading the file')
     }
-}
+  }
 }
