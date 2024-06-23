@@ -50,7 +50,7 @@ export class ExpressApp {
 
   public start(port: number) {
     return this.expressApp.listen(port, () => {
-      loggerService.info('Sever is running !')
+      loggerService.info(`Sever is running on por ${port}!`)
     })
   }
 
