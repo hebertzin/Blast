@@ -4,7 +4,6 @@ import {
   S3Client,
 } from '@aws-sdk/client-s3'
 import { Logger } from 'winston'
-import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 
 
 export class UploadFileService {
