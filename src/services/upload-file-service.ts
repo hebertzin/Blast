@@ -4,8 +4,6 @@ import {
   S3Client,
 } from '@aws-sdk/client-s3'
 import { Logger } from 'winston'
-import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
-
 
 export class UploadFileService {
   private s3: S3Client
@@ -38,5 +36,5 @@ export class UploadFileService {
       this.logger.error('Error uploading file:', error)
       throw new Error('An error occurred while uploading the file')
     }
-}
+  }
 }
