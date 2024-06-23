@@ -6,6 +6,7 @@ import { listFilesControllerHandler } from '../controllers/list-all-files-contro
 import { listFileByIdControllerHandler } from '../controllers/list-file-by-id-controller'
 import { fileValidatorMiddleware } from '../middleware/validate-files'
 import { Request, Response } from 'express'
+import { uploadFileControllerHandler } from '../controllers/upload-file-controller'
 export const upload = Router()
 
 upload.post(
@@ -13,7 +14,7 @@ upload.post(
   storage.single('file'),
   fileValidatorMiddleware.validateFile.bind(fileValidatorMiddleware),
   async (req: Request, res: Response) => {
-    uploadFilesControllerHandler.handle(req, res)
+    uploadFileControllerHandler.handle(req, res)
   },
 )
 
