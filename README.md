@@ -56,7 +56,7 @@ I did this project to train concepts such as cloud computing using AWS services 
 
 ## Running tests
 
-- You can run integration tests with this script  `npm run tests:integration`
+- You can run integration tests with this script `npm run tests:integration`
 - You can run unit tests with this script `npm run tests:unit`
 
 ## AWS console with some files

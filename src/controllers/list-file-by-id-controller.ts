@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { ListFileByIdService } from '../services/list-file-by-id-service'
 import { s3 } from '../aws'
 import { HttpStatusCode } from '../utils/http-status'
+import { loggerService } from '../config/logger/winston'
 
 export class ListFileByIdController {
   private listFileByIdService: ListFileByIdService
@@ -27,5 +28,5 @@ export class ListFileByIdController {
 }
 
 export const listFileByIdControllerHandler = new ListFileByIdController(
-  new ListFileByIdService(s3),
+  new ListFileByIdService(s3, loggerService),
 )

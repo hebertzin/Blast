@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { UploadFileService } from '../services/upload-file-service'
 import { s3 } from '../aws'
 import { HttpStatusCode } from '../utils/http-status'
+import { loggerService } from '../config/logger/winston'
 
 export class UploadController {
   private uploadService: UploadFileService
@@ -32,5 +33,5 @@ export class UploadController {
 }
 
 export const uploadFileControllerHandler = new UploadController(
-  new UploadFileService(s3, 'storage-app'),
+  new UploadFileService(s3, 'storage-app', loggerService),
 )

@@ -11,8 +11,11 @@ export class ListFilesService {
     const params = {
       Bucket: 'storage-app',
     }
-
-    const data = await this.s3.send(new ListObjectsV2Command(params))
-    return data.Contents
+    try {
+      const data = await this.s3.send(new ListObjectsV2Command(params))
+      return data.Contents
+    } catch (error) {
+      throw new Error('Some error has been ocurred')
+    }
   }
 }
