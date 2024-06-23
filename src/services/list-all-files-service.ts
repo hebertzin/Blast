@@ -1,4 +1,4 @@
-import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3'
+import { S3Client, ListObjectsV2Command, _Object } from '@aws-sdk/client-s3'
 
 export class ListFilesService {
   private s3: S3Client
@@ -7,12 +7,14 @@ export class ListFilesService {
     this.s3 = s3
   }
 
-  public async invoke(): Promise<any> {
+  public async invoke(): Promise<_Object[]> {
     const params = {
       Bucket: 'storage-app',
     }
-
-    const data = await this.s3.send(new ListObjectsV2Command(params))
-    return data.Contents
-  }
+    try {
+      const data = await this.s3.send(new ListObjectsV2Command(params))
+      return data.Contents
+    } catch (error) {
+      throw new Error('Some error has been ocurred')
+    }
 }

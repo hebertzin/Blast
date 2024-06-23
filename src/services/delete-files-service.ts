@@ -8,11 +8,19 @@ export class DeleteFileService {
   }
 
   public async invoke(file_id: string): Promise<void> {
+    if (!file_id || file_id.trim() == '') {
+      throw new Error('Provide a file id')
+    }
+
     const params = {
       Bucket: 'storage-app',
       Key: file_id,
     }
 
-    await this.s3.send(new DeleteObjectCommand(params))
+    try {
+      await this.s3.send(new DeleteObjectCommand(params))
+    } catch (error) {
+      throw new Error('Some error has been ocurred')
+    }
   }
 }
