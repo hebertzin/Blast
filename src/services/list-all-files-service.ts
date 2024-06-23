@@ -17,4 +17,5 @@ export class ListFilesService {
     } catch (error) {
       throw new Error('Some error has been ocurred')
     }
+  }
 }
