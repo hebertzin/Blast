@@ -8,6 +8,9 @@ const envSchema = z.object({
   ACCESS_KEY: z.string(),
   SECRET_KEY: z.string(),
   REGION: z.string(),
+  REDIS_PORT: z.coerce.number(),
+  REDIS_HOST: z.string(),
+  REDIS_PASSWORD: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)
