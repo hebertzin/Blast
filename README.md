@@ -19,6 +19,8 @@ I did this project to train concepts such as cloud computing using AWS services 
 - **Prettier**
 - **Eslint**
 - **Zod**
+- **Jest**
+- **Supertest**
 
 ## **Features**
 
@@ -51,6 +53,11 @@ I did this project to train concepts such as cloud computing using AWS services 
 
 - In the json package I created a script to run docker, all you need to do is run the command `npm run docker:build`
 - After that, the application image will be created.
+
+## Running tests
+
+- You can run integration tests with this script  `npm run tests:integration`
+- You can run unit tests with this script `npm run tests:unit`
 
 ## AWS console with some files
 
