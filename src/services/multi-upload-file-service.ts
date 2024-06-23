@@ -25,6 +25,7 @@ export class UploadFilesService {
         Bucket: 'storage-app',
         Key: file.originalname,
         Body: file.buffer,
+
       }
 
       try {

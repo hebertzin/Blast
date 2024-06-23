@@ -37,3 +37,4 @@ export const uploadService = new UploadFilesService(s3, loggerService)
 export const uploadFilesControllerHandler = new UploadFilesController(
   uploadService,
 )
+

@@ -17,6 +17,7 @@ describe('ListFileByIdService', () => {
     })
 
     listFileByIdService = new ListFileByIdService(s3Client, loggerService)
+
   })
 
   it('should list file from S3 bucket', async () => {
