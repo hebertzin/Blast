@@ -5,7 +5,6 @@ import {
 } from '@aws-sdk/client-s3'
 import { Logger } from 'winston'
 
-
 export class UploadFileService {
   private s3: S3Client
   private bucketName: string
