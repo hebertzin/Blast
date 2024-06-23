@@ -1,6 +1,6 @@
 import express, { Request, Response, Express } from 'express'
 import { upload } from './routes/upload'
-import { logger } from './config/logger/winston'
+import { loggerService } from './config/logger/winston'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import compression from 'compression'
@@ -50,7 +50,7 @@ export class ExpressApp {
 
   public start(port: number) {
     return this.expressApp.listen(port, () => {
-      logger.info('Sever is running !')
+      loggerService.info('Sever is running !')
     })
   }
 
