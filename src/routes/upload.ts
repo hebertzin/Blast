@@ -14,7 +14,7 @@ upload.post(
   storage.single('file'),
   fileValidatorMiddleware.validateFile.bind(fileValidatorMiddleware),
   async (req: Request, res: Response) => {
-    uploadFileControllerHandler.handle(req, res)
+    uploadFilesControllerHandler.handle(req, res)
   },
 )
 

@@ -33,3 +33,4 @@ export class UploadController {
 }
 
 export const uploadFileControllerHandler =  new UploadFileService(s3, 'storage-app', loggerService)
+

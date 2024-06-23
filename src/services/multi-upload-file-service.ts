@@ -21,6 +21,13 @@ export class UploadFilesService {
         throw new Error(`Invalid file: ${file ? file.originalname : 'unknown'}`)
       }
 
+      const params = {
+        Bucket: 'storage-app',
+        Key: file.originalname,
+        Body: file.buffer,
+
+      }
+
       try {
         await this.s3.send(new PutObjectCommand(params))
       } catch (error) {
