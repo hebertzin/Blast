@@ -4,3 +4,4 @@ tmp
 combined.log
 error.log
 coverage
+dist
