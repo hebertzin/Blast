@@ -32,5 +32,12 @@ export class UploadController {
   }
 }
 
-export const uploadFileControllerHandler =  new UploadFileService(s3, 'storage-app', loggerService)
+export const uploadFileService = new UploadFileService(
+  s3,
+  'storage-app',
+  loggerService,
+)
 
+export const uploadFileControllerHandler = new UploadController(
+  uploadFileService,
+)
