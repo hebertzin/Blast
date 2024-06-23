@@ -4,6 +4,7 @@ import { s3 } from '../aws'
 import { HttpStatusCode } from '../utils/http-status'
 import { loggerService } from '../config/logger/winston'
 
+
 export class ListFileByIdController {
   private listFileByIdService: ListFileByIdService
   constructor(listById: ListFileByIdService) {
@@ -27,6 +28,4 @@ export class ListFileByIdController {
   }
 }
 
-export const listFileByIdControllerHandler = new ListFileByIdController(
-  new ListFileByIdService(s3, loggerService),
-)
+export const listFileByIdControllerHandler =   new ListFileByIdService(s3, loggerService)

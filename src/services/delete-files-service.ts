@@ -11,10 +11,12 @@ export class DeleteFileService {
     if (!file_id || file_id.trim() == '') {
       throw new Error('Provide a file id')
     }
+
     const params = {
       Bucket: 'storage-app',
       Key: file_id,
     }
+
     try {
       await this.s3.send(new DeleteObjectCommand(params))
     } catch (error) {

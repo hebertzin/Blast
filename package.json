@@ -16,6 +16,7 @@
     "format": "prettier --write .",
     "tests:e2e": "jest src/tests/e2e",
     "coverage": "jest --coverage"
+    "tests:e2e": "jest src/tests/e2e"
   },
   "keywords": [],
   "author": "",

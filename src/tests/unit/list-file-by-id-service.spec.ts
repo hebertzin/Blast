@@ -3,6 +3,7 @@ import { ListFileByIdService } from '../../services/list-file-by-id-service'
 import { env } from '../../config/env'
 import { loggerService } from '../../config/logger/winston'
 
+
 describe('ListFileByIdService', () => {
   let s3Client: S3Client
   let listFileByIdService: ListFileByIdService
@@ -15,7 +16,9 @@ describe('ListFileByIdService', () => {
         secretAccessKey: env.SECRET_KEY,
       },
     })
+    
     listFileByIdService = new ListFileByIdService(s3Client, loggerService)
+
   })
 
   it('should list file from S3 bucket', async () => {
