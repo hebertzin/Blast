@@ -17,7 +17,7 @@ describe('ListFileByIdService', () => {
       },
     })
 
-    listFileByIdService = new ListFileByIdService(
+   listFileByIdService = new ListFileByIdService(
       s3Client,
       loggerService,
       redis,
