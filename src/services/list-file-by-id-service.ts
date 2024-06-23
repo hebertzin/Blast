@@ -1,5 +1,12 @@
 import { S3Client, HeadObjectCommand } from '@aws-sdk/client-s3'
 
+type ReturnTypeListFileById = {
+  key: string
+  size: number
+  lastModified: Date
+  contentType: string
+}
+
 export class ListFileByIdService {
   private s3: S3Client
 
@@ -7,7 +14,7 @@ export class ListFileByIdService {
     this.s3 = s3
   }
 
-  public async invoke(key: string): Promise<any> {
+  public async invoke(key: string): Promise<ReturnTypeListFileById> {
     const params = {
       Bucket: 'storage-app',
       Key: key,

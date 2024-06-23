@@ -1,4 +1,8 @@
-import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
+import {
+  PutObjectCommand,
+  PutObjectCommandOutput,
+  S3Client,
+} from '@aws-sdk/client-s3'
 
 export class UploadFileService {
   private s3: S3Client
@@ -9,7 +13,9 @@ export class UploadFileService {
     this.bucketName = bucketName
   }
 
-  public async invoke(file: Express.Multer.File) {
+  public async invoke(
+    file: Express.Multer.File,
+  ): Promise<PutObjectCommandOutput> {
     const fileName = file.originalname
 
     const params = {
