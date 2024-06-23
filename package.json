@@ -10,7 +10,7 @@
     "tests:all": "npm run tests:integration & npm run tests:unit",
     "dev": "nodemon src/server.ts",
     "start": "npm run build && node dist/server.js",
-    "docker:build": "docker build -t uploads3 .",
+    "docker:build": "docker build -t uploads3 -f docker/Dockerfile .",
     "prepare": "husky install",
     "build": "tsc",
     "format": "prettier --write .",
