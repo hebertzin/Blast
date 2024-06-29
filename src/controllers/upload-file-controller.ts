@@ -24,14 +24,16 @@ export class UploadController {
       const data = await this.uploadService.invoke(file)
 
       if (data) {
-        return response.json({ msg: 'file already exist' })
+        return response
+          .status(HttpStatusCode.Conflict)
+          .json({ msg: 'file already exist' })
       }
 
       return response.status(HttpStatusCode.Created).json(data)
     } catch (error) {
       return response
         .status(HttpStatusCode.InternalServerError)
-        .json({ message: 'Some error has occurred' })
+        .json({ message: 'Some error has occurred', error })
     }
   }
 }

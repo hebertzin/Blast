@@ -23,7 +23,7 @@ export class ListFilesController {
     } catch (error) {
       return response
         .status(HttpStatusCode.BadRequest)
-        .json({ message: 'An error has occurred' })
+        .json({ message: 'An error has occurred', error })
     }
   }
 }

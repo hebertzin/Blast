@@ -21,7 +21,7 @@ export class DeleteFileController {
     } catch (error) {
       return response
         .status(HttpStatusCode.InternalServerError)
-        .json({ message: 'An error has occurred' })
+        .json({ message: 'An error has occurred', error })
     }
   }
 }
