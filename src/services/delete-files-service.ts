@@ -1,4 +1,6 @@
 import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3'
+import { AppError, FileNotFound } from '../utils/errors/app-error'
+import { HttpStatusCode } from '../utils/http-status'
 
 export class DeleteFileService {
   private s3: S3Client
@@ -9,7 +11,7 @@ export class DeleteFileService {
 
   public async invoke(file_id: string): Promise<void> {
     if (!file_id || file_id.trim() == '') {
-      throw new Error('Provide a file id')
+      throw new FileNotFound('Provide a file id', HttpStatusCode.BadRequest)
     }
 
     const params = {
@@ -20,7 +22,10 @@ export class DeleteFileService {
     try {
       await this.s3.send(new DeleteObjectCommand(params))
     } catch (error) {
-      throw new Error('Some error has been ocurred')
+      throw new AppError(
+        'Some error has been ocurred',
+        HttpStatusCode.InternalServerError,
+      )
     }
   }
 }

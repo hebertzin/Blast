@@ -1,6 +1,8 @@
 import { S3Client, ListObjectsV2Command, _Object } from '@aws-sdk/client-s3'
 import { Redis } from 'ioredis'
 import { Logger } from 'winston'
+import { AppError } from '../utils/errors/app-error'
+import { HttpStatusCode } from '../utils/http-status'
 
 export class ListFilesService {
   private s3: S3Client
@@ -28,7 +30,10 @@ export class ListFilesService {
       await this.redisService.set('data', JSON.stringify(data), 'EX', 3000)
       return data.Contents
     } catch (error) {
-      throw new Error('Some error has been ocurred')
+      throw new AppError(
+        'Some error has been ocurred',
+        HttpStatusCode.InternalServerError,
+      )
     }
   }
 }

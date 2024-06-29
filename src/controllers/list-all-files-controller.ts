@@ -21,9 +21,7 @@ export class ListFilesController {
         files: files,
       })
     } catch (error) {
-      return response
-        .status(HttpStatusCode.BadRequest)
-        .json({ message: 'An error has occurred', error })
+      return response.status(HttpStatusCode.BadRequest).json({ error })
     }
   }
 }

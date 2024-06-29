@@ -1,6 +1,8 @@
 import { S3Client, HeadObjectCommand } from '@aws-sdk/client-s3'
 import { Redis } from 'ioredis'
 import { Logger } from 'winston'
+import { AppError, FileNotFound } from '../utils/errors/app-error'
+import { HttpStatusCode } from '../utils/http-status'
 
 type ReturnTypeListFileById = {
   key: string
@@ -28,7 +30,10 @@ export class ListFileByIdService {
     }
     if (!file_id || file_id.trim() == '') {
       this.logger.warn('Provide a file file id...')
-      throw new Error('Please provide a file id')
+      throw new FileNotFound(
+        'Please provide a file id',
+        HttpStatusCode.NotFound,
+      )
     }
     const params = {
       Bucket: 'storage-app',
@@ -48,7 +53,10 @@ export class ListFileByIdService {
       await this.redisService.set(file_id, JSON.stringify(result), 'EX', 600)
       return result
     } catch (error) {
-      throw new Error('Some error while get a file...')
+      throw new AppError(
+        'An error occurred while trying to retrieve a file',
+        HttpStatusCode.InternalServerError,
+      )
     }
   }
 }

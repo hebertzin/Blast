@@ -21,9 +21,7 @@ export class ListFileByIdController {
         file: fileDetails,
       })
     } catch (error) {
-      return response
-        .status(HttpStatusCode.InternalServerError)
-        .json({ message: 'An error has occurred', error })
+      return response.status(HttpStatusCode.InternalServerError).json({ error })
     }
   }
 }

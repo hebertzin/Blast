@@ -31,9 +31,7 @@ export class UploadController {
 
       return response.status(HttpStatusCode.Created).json(data)
     } catch (error) {
-      return response
-        .status(HttpStatusCode.InternalServerError)
-        .json({ message: 'Some error has occurred', error })
+      return response.status(HttpStatusCode.InternalServerError).json({ error })
     }
   }
 }

@@ -25,9 +25,7 @@ export class UploadFilesController {
         .status(HttpStatusCode.Created)
         .json({ message: 'Files uploaded successfully' })
     } catch (error) {
-      return response
-        .status(HttpStatusCode.InternalServerError)
-        .json({ message: 'An error has occurred', error })
+      return response.status(HttpStatusCode.InternalServerError).json({ error })
     }
   }
 }

@@ -4,6 +4,8 @@ import {
   S3Client,
 } from '@aws-sdk/client-s3'
 import { Logger } from 'winston'
+import { AppError, FileNotFound } from '../utils/errors/app-error'
+import { HttpStatusCode } from '../utils/http-status'
 
 export class UploadFileService {
   private s3: S3Client
@@ -20,7 +22,7 @@ export class UploadFileService {
     file: Express.Multer.File,
   ): Promise<PutObjectCommandOutput> {
     if (!file) {
-      throw new Error('Provide a file')
+      throw new FileNotFound('Provide a file', HttpStatusCode.NotFound)
     }
 
     const params = {
@@ -34,7 +36,10 @@ export class UploadFileService {
       return await this.s3.send(command)
     } catch (error) {
       this.logger.error('Error uploading file:', error)
-      throw new Error('An error occurred while uploading the file')
+      throw new AppError(
+        'An error occurred while uploading the file',
+        HttpStatusCode.InternalServerError,
+      )
     }
   }
 }

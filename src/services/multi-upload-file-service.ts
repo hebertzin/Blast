@@ -1,5 +1,7 @@
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import { Logger } from 'winston'
+import { AppError, FileLengthError } from '../utils/errors/app-error'
+import { HttpStatusCode } from '../utils/http-status'
 
 export class UploadFilesService {
   private s3: S3Client
@@ -12,7 +14,10 @@ export class UploadFilesService {
 
   public async invoke(files: Express.Multer.File[]): Promise<void> {
     if (!files || files.length < 2) {
-      throw new Error('Must have more than one file')
+      throw new FileLengthError(
+        'Must have more than one file',
+        HttpStatusCode.BadRequest,
+      )
     }
 
     const uploadPromises = files.map(async (file: Express.Multer.File) => {
@@ -31,7 +36,10 @@ export class UploadFilesService {
         await this.s3.send(new PutObjectCommand(params))
       } catch (error) {
         this.logger.error('Error upload files...')
-        throw new Error('An error trying upload files...')
+        throw new AppError(
+          'An error trying upload files...',
+          HttpStatusCode.InternalServerError,
+        )
       }
     })
 
