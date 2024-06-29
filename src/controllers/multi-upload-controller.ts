@@ -10,24 +10,22 @@ export class UploadFilesController {
   constructor(uploadFiles: UploadFilesService) {
     this.uploadFilesService = uploadFiles
   }
-  public async handle(request: Request, response: Response): Promise<Response> {
+  public async handle(req: Request, res: Response): Promise<Response> {
     try {
-      const files = request?.files as Express.Multer.File[]
+      const files = req?.files as Express.Multer.File[]
       if (!files || files.length === 0) {
-        return response.status(HttpStatusCode.BadRequest).json({
+        return res.status(HttpStatusCode.BadRequest).json({
           message: 'No files sent',
         })
       }
 
       await this.uploadFilesService.invoke(files)
 
-      return response
+      return res
         .status(HttpStatusCode.Created)
         .json({ message: 'Files uploaded successfully' })
     } catch (error) {
-      return response
-        .status(HttpStatusCode.InternalServerError)
-        .json({ message: 'An error has occurred' })
+      return res.status(error.code).json({ error })
     }
   }
 }

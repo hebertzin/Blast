@@ -43,7 +43,7 @@ I did this project to train concepts such as cloud computing using AWS services 
 ## How to run this project
 
 - Make sure you have the **node**, **docker** installed
-- Clone this repository `git clone: ​​https://github.com/hebertsanto/upload-s3.git`
+- Clone this repository `git clone: https://github.com/hebertsanto/upload-s3.git`
 
 - Navigate to the project and run the following command `npm install`
 - Create a `.env` file and create environment variables with your AWS s3 credentials, don't forget that.
@@ -63,7 +63,7 @@ I did this project to train concepts such as cloud computing using AWS services 
 ## Pipilines/Github Actions
 
 - **Lint**
-  
+
   In this pipeline I implemented code lint to maintain the quality and organization of the code
 
 - **Build**
@@ -74,6 +74,14 @@ I did this project to train concepts such as cloud computing using AWS services 
 
 ![Captura de tela de 2024-04-06 20-31-11](https://github.com/hebertsanto/upload-s3/assets/108555424/a3a31951-33d3-4955-8458-62c30c4ad5d4)
 
+## AWS EC2 some images with requests
+
+- **File id request**
+
+  ![file-id](https://github.com/hebertsanto/upload-s3/assets/108555424/7b549579-56cc-4938-a2d7-9373a0d49d38)
+
+- **Health route**
+
 
 ## AWS EC2 some images with requests
 
@@ -83,6 +91,7 @@ I did this project to train concepts such as cloud computing using AWS services 
 
 - **Health route**
   
+
   ![health-route](https://github.com/hebertsanto/upload-s3/assets/108555424/dda7b577-752c-4d5a-9f63-0fd7d33c7a6b)
 
 ## References
@@ -92,8 +101,13 @@ I did this project to train concepts such as cloud computing using AWS services 
 [S3 docs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html)
 
 [Playlist EC2 youtube course(Portuguese)](https://www.youtube.com/watch?v=HiBCv9DolxI&list=PLtL97Owd1gkQ0dfqGW8OtJ-155Gs67Ecz)
-## Conclusion 
+
+
+## Conclusion
 
 By doing this project I managed to acquire a lot of knowledge about Docker and go deeper into how it works, I also learned concepts in cloud computing and application deployment, as I wanted to simulate an environment with many requests I also found it interesting to implement caching with redis, this is a project There's a lot to improve so I'll keep improving it
 
+## Conclusion 
+
+By doing this project I managed to acquire a lot of knowledge about Docker and go deeper into how it works, I also learned concepts in cloud computing and application deployment, as I wanted to simulate an environment with many requests I also found it interesting to implement caching with redis, this is a project There's a lot to improve so I'll keep improving it
 

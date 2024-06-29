@@ -11,27 +11,16 @@ export class UploadController {
     this.uploadService = uploadService
   }
 
-  public handle = async (request: Request, response: Response) => {
+  public handle = async (req: Request, res: Response) => {
     try {
-      const file = request.file
-
-      if (!file) {
-        return response
-          .status(HttpStatusCode.BadRequest)
-          .json({ message: 'No file provided' })
-      }
+      const file = req.file
 
       const data = await this.uploadService.invoke(file)
 
-      if (data) {
-        return response.json({ msg: 'file already exist' })
-      }
+      return res.status(HttpStatusCode.Created).json(data)
 
-      return response.status(HttpStatusCode.Created).json(data)
     } catch (error) {
-      return response
-        .status(HttpStatusCode.InternalServerError)
-        .json({ message: 'Some error has occurred' })
+      return res.status(error.code).json({ error })
     }
   }
 }
