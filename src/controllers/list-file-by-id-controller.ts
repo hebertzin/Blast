@@ -11,17 +11,17 @@ export class ListFileByIdController {
     this.listFileByIdService = listById
   }
 
-  public async handle(request: Request, response: Response): Promise<Response> {
+  public async handle(req: Request, res: Response): Promise<Response> {
     try {
-      const { id } = request.params
+      const { id } = req.params
 
       const fileDetails = await this.listFileByIdService.invoke(id)
 
-      return response.status(HttpStatusCode.Ok).json({
+      return res.status(HttpStatusCode.Ok).json({
         file: fileDetails,
       })
     } catch (error) {
-      return response.status(HttpStatusCode.InternalServerError).json({ error })
+      return res.status(error.code).json({ error })
     }
   }
 }

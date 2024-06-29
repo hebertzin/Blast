@@ -10,18 +10,15 @@ export class ListFilesController {
   constructor(listFiles: ListFilesService) {
     this.listFilesService = listFiles
   }
-  public async handle(
-    _request: Request,
-    response: Response,
-  ): Promise<Response> {
+  public async handle(_req: Request, res: Response): Promise<Response> {
     try {
       const files = await this.listFilesService.invoke()
 
-      return response.status(HttpStatusCode.Ok).json({
+      return res.status(HttpStatusCode.Ok).json({
         files: files,
       })
     } catch (error) {
-      return response.status(HttpStatusCode.BadRequest).json({ error })
+      return res.status(error.code).json({ error })
     }
   }
 }

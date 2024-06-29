@@ -1,5 +1,5 @@
 export class AppError extends Error {
-  private code: number
+  code: number
   constructor(message: string, code: number) {
     super()
     this.message = message
@@ -9,7 +9,7 @@ export class AppError extends Error {
 }
 
 export class FileNotFound extends Error {
-  private code: number
+  code: number
   constructor(message: string, code: number) {
     super()
     this.message = message
@@ -19,7 +19,7 @@ export class FileNotFound extends Error {
 }
 
 export class FileLengthError extends Error {
-  private code: number
+  code: number
   constructor(message: string, code: number) {
     super()
     this.message = message

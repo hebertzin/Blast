@@ -9,17 +9,17 @@ export class DeleteFileController {
     this.deleteFileService = deleteService
   }
 
-  public async handle(request: Request, response: Response): Promise<Response> {
+  public async handle(req: Request, res: Response): Promise<Response> {
     try {
-      const { id } = request.params
+      const { id } = req.params
 
       await this.deleteFileService.invoke(id)
 
-      return response
+      return res
         .status(HttpStatusCode.Ok)
         .json({ message: 'File deleted successfully' })
     } catch (error) {
-      return response.status(HttpStatusCode.InternalServerError).json({ error })
+      return res.status(error.code).json({ error })
     }
   }
 }
