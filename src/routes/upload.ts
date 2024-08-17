@@ -14,7 +14,7 @@ upload.post(
   storage.single('file'),
   fileValidatorMiddleware.validateFile.bind(fileValidatorMiddleware),
   async (req: Request, res: Response) => {
-    uploadFileControllerHandler.handle(req, res)
+    await uploadFileControllerHandler.handle(req, res)
   },
 )
 
@@ -23,18 +23,18 @@ upload.post(
   storage.array('files'),
   fileValidatorMiddleware.validateFile.bind(fileValidatorMiddleware),
   async (req: Request, res: Response) => {
-    uploadFilesControllerHandler.handle(req, res)
+    await uploadFilesControllerHandler.handle(req, res)
   },
 )
 
 upload.delete('/files/:id', async (req: Request, res: Response) => {
-  return deleteFileControllerHandler.handle(req, res)
+  return await deleteFileControllerHandler.handle(req, res)
 })
 
 upload.get('/files', async (req: Request, res: Response) => {
   return listFilesControllerHandler.handle(req, res)
 })
 
-upload.get('/files/:id', (req: Request, res: Response) => {
-  listFileByIdControllerHandler.handle(req, res)
+upload.get('/files/:id', async (req: Request, res: Response) => {
+  return await listFileByIdControllerHandler.handle(req, res)
 })

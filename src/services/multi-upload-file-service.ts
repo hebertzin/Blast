@@ -20,7 +20,7 @@ export class UploadFilesService {
       )
     }
 
-    const uploadPromises = files.map(async (file: Express.Multer.File) => {
+    const FilesToUpload = files.map(async (file: Express.Multer.File) => {
       if (!file || !file.buffer || !file.originalname) {
         this.logger.warn('Invalid file...')
         throw new Error(`Invalid file: ${file ? file.originalname : 'unknown'}`)
@@ -43,6 +43,6 @@ export class UploadFilesService {
       }
     })
 
-    await Promise.all(uploadPromises)
+    await Promise.all(FilesToUpload)
   }
 }
