@@ -18,7 +18,6 @@ export class UploadController {
       const data = await this.uploadService.invoke(file)
 
       return res.status(HttpStatusCode.Created).json(data)
-
     } catch (error) {
       return res.status(error.code).json({ error })
     }
