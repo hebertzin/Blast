@@ -11,7 +11,6 @@ export class UploadFilesService {
     this.s3 = s3
     this.logger = logger
   }
-
   public async invoke(files: Express.Multer.File[]): Promise<void> {
     if (!files || files.length < 2) {
       throw new FileLengthError(
@@ -25,13 +24,11 @@ export class UploadFilesService {
         this.logger.warn('Invalid file...')
         throw new Error(`Invalid file: ${file ? file.originalname : 'unknown'}`)
       }
-
       const params = {
         Bucket: 'storage-app',
         Key: file.originalname,
         Body: file.buffer,
       }
-
       try {
         await this.s3.send(new PutObjectCommand(params))
       } catch (error) {
@@ -42,7 +39,7 @@ export class UploadFilesService {
         )
       }
     })
-
+   
     await Promise.all(FilesToUpload)
   }
 }

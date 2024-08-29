@@ -18,9 +18,7 @@ export class UploadFilesController {
           message: 'No files sent',
         })
       }
-
       await this.uploadFilesService.invoke(files)
-
       return res
         .status(HttpStatusCode.Created)
         .json({ message: 'Files uploaded successfully' })

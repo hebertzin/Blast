@@ -7,13 +7,13 @@ import { redis } from '../redis'
 
 export class ListFilesController {
   private listFilesService: ListFilesService
+
   constructor(listFiles: ListFilesService) {
     this.listFilesService = listFiles
   }
   public async handle(_req: Request, res: Response): Promise<Response> {
     try {
       const files = await this.listFilesService.invoke()
-
       return res.status(HttpStatusCode.Ok).json({
         files: files,
       })

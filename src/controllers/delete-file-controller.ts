@@ -5,16 +5,14 @@ import { HttpStatusCode } from '../utils/http-status'
 
 export class DeleteFileController {
   private deleteFileService: DeleteFileService
+
   constructor(deleteService: DeleteFileService) {
     this.deleteFileService = deleteService
   }
-
   public async handle(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params
-
       await this.deleteFileService.invoke(id)
-
       return res
         .status(HttpStatusCode.Ok)
         .json({ message: 'File deleted successfully' })

@@ -24,13 +24,11 @@ export class UploadFileService {
     if (!file) {
       throw new FileNotFound('Provide a file', HttpStatusCode.NotFound)
     }
-
     const params = {
       Bucket: this.bucketName,
       Key: file.originalname,
       Body: file.buffer,
     }
-
     try {
       const command = new PutObjectCommand(params)
       return await this.s3.send(command)
