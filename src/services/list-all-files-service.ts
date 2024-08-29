@@ -14,7 +14,6 @@ export class ListFilesService {
     this.redisService = redisService
     this.logger = logger
   }
-
   public async invoke(): Promise<_Object[]> {
     const params = {
       Bucket: 'storage-app',

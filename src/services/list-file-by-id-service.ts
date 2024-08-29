@@ -21,7 +21,6 @@ export class ListFileByIdService {
     this.logger = logger
     this.redisService = redisService
   }
-
   public async invoke(file_id: string): Promise<ReturnTypeListFileById> {
     const cacheData = await this.redisService.get(file_id)
     if (cacheData) {
@@ -39,10 +38,8 @@ export class ListFileByIdService {
       Bucket: 'storage-app',
       Key: file_id,
     }
-
     try {
       const data = await this.s3.send(new HeadObjectCommand(params))
-
       const result: ReturnTypeListFileById = {
         key: file_id,
         size: data.ContentLength,
