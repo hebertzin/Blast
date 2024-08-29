@@ -3,7 +3,7 @@ import { HttpStatusCode } from '../utils/http-status'
 
 export class FileValidatorMiddleware {
   public validateFile(req: Request, res: Response, next: NextFunction) {
-    const file = req.file as Express.Multer.File
+    const file: Express.Multer.File = req.file
 
     if (!file) {
       return res
@@ -27,4 +27,5 @@ export class FileValidatorMiddleware {
   }
 }
 
+//singleton
 export const fileValidatorMiddleware = new FileValidatorMiddleware()

@@ -10,13 +10,10 @@ export class UploadController {
   constructor(uploadService: UploadFileService) {
     this.uploadService = uploadService
   }
-
   public handle = async (req: Request, res: Response) => {
     try {
       const file = req.file
-
       const data = await this.uploadService.invoke(file)
-
       return res.status(HttpStatusCode.Created).json(data)
     } catch (error) {
       return res.status(error.code).json({ error })

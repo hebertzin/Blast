@@ -7,6 +7,7 @@ import { listFileByIdControllerHandler } from '../controllers/list-file-by-id-co
 import { fileValidatorMiddleware } from '../middleware/validate-files'
 import { Request, Response } from 'express'
 import { uploadFileControllerHandler } from '../controllers/upload-file-controller'
+
 export const upload = Router()
 
 upload.post(
