@@ -18,6 +18,7 @@ export class UploadFilesService {
         HttpStatusCode.BadRequest,
       )
     }
+
     const FilesToUpload = files.map(async (file: Express.Multer.File) => {
       if (!file || !file.buffer || !file.originalname) {
         this.logger.warn('Invalid file...')
@@ -38,6 +39,7 @@ export class UploadFilesService {
         )
       }
     })
+   
     await Promise.all(FilesToUpload)
   }
 }
