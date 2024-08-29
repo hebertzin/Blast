@@ -11,6 +11,8 @@ const envSchema = z.object({
   REDIS_PORT: z.coerce.number(),
   REDIS_HOST: z.string(),
   REDIS_PASSWORD: z.string(),
+  NEW_RELIC_APP_NAME: z.string(),
+  NEW_RELIC_LICENSE_KEY: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)

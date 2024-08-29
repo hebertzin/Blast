@@ -5,6 +5,7 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import compression from 'compression'
 import { HttpStatusCode } from './utils/http-status'
+import './newrelic'
 
 export class ExpressApp {
   private expressApp: Express
