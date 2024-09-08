@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { storage } from '../utils/multer'
+import { storage } from '../../infra/multer'
 import { uploadFilesControllerHandler } from '../controllers/multi-upload-controller'
 import { deleteFileControllerHandler } from '../controllers/delete-file-controller'
 import { listFilesControllerHandler } from '../controllers/list-all-files-controller'

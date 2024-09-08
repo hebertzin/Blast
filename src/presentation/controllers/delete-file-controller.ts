@@ -1,7 +1,7 @@
-import { s3 } from '../aws'
-import { DeleteFileService } from '../application/usecases/delete-files-service'
+import { s3 } from '../../infra/aws'
+import { DeleteFileService } from '../../application/usecases/delete-files-service'
 import { Request, Response } from 'express'
-import { HttpStatusCode } from '../utils/http-status'
+import { HttpStatusCode } from '../../domain/http-status'
 
 export class DeleteFileController {
   private deleteFileService: DeleteFileService

@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
-import { ListFilesService } from '../services/list-all-files-service'
-import { s3 } from '../aws'
-import { HttpStatusCode } from '../utils/http-status'
-import { loggerService } from '../config/logger/winston'
-import { redis } from '../redis'
+import { ListFilesService } from '../../application/usecases/list-all-files-service'
+import { s3 } from '../../infra/aws'
+import { HttpStatusCode } from '../../domain/http-status'
+import { loggerService } from '../../infra/config/logger/winston'
+import { redis } from '../../infra/redis'
 
 export class ListFilesController {
   private listFilesService: ListFilesService

@@ -1,5 +1,5 @@
 import { ExpressApp } from './app'
-import { env } from './config/env'
+import { env } from './infra/config/env'
 
 export const app = new ExpressApp()
 

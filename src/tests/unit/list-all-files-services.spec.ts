@@ -1,8 +1,8 @@
-import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3'
+import { S3Client } from '@aws-sdk/client-s3'
 import { ListFilesService } from '../../application/usecases/list-all-files-service'
-import { env } from '../../config/env'
-import { loggerService } from '../../config/logger/winston'
-import { redis } from '../../redis'
+import { env } from '../../infra/config/env'
+import { loggerService } from '../../infra/config/logger/winston'
+import { redis } from '../../infra/redis'
 describe('ListFilesService', () => {
   let s3Client: S3Client
   let listFilesService: ListFilesService

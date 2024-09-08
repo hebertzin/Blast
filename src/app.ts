@@ -1,6 +1,6 @@
 import express, { Request, Response, Express } from 'express'
-import { upload } from './routes/upload'
-import { loggerService } from './config/logger/winston'
+import { upload } from './presentation/routes/upload'
+import { loggerService } from './infra/config/logger/winston'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import compression from 'compression'
