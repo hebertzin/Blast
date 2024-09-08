@@ -1,12 +1,12 @@
 import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3'
-import { ListFileByIdService } from '../../application/usecases/list-file-by-id-use-case'
+import { ListFileByIdUseCase } from '../../application/usecases/list-file-by-id-use-case'
 import { env } from '../../infra/config/env'
 import { loggerService } from '../../infra/config/logger/winston'
-import { redis } from '../../infra/redis'
+import { RedisImplementation } from '../../infra/redis/redis'
 
 describe('ListFileByIdService', () => {
   let s3Client: S3Client
-  let listFileByIdService: ListFileByIdService
+  let listFileByIdService: ListFileByIdUseCase
 
   beforeAll(() => {
     s3Client = new S3Client({
@@ -17,10 +17,10 @@ describe('ListFileByIdService', () => {
       },
     })
 
-    listFileByIdService = new ListFileByIdService(
+    listFileByIdService = new ListFileByIdUseCase(
       s3Client,
       loggerService,
-      redis,
+      new RedisImplementation(),
     )
   })
 

@@ -1,11 +1,12 @@
 import { S3Client } from '@aws-sdk/client-s3'
-import { ListFilesService } from '../../application/usecases/list-files-use-case'
 import { env } from '../../infra/config/env'
 import { loggerService } from '../../infra/config/logger/winston'
-import { redis } from '../../infra/redis'
+import { ListFilesUseCase } from '../../application/usecases/list-files-use-case'
+import { RedisImplementation } from '../../infra/redis/redis'
+
 describe('ListFilesService', () => {
   let s3Client: S3Client
-  let listFilesService: ListFilesService
+  let listFilesService: ListFilesUseCase
 
   beforeAll(() => {
     s3Client = new S3Client({
@@ -15,7 +16,11 @@ describe('ListFilesService', () => {
         secretAccessKey: env.SECRET_KEY,
       },
     })
-    listFilesService = new ListFilesService(s3Client, loggerService, redis)
+    listFilesService = new ListFilesUseCase(
+      s3Client,
+      loggerService,
+      new RedisImplementation(),
+    )
   })
 
   it('should list files from S3 bucket', async () => {
