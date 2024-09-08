@@ -1,15 +1,9 @@
 import { S3Client, HeadObjectCommand } from '@aws-sdk/client-s3'
-import { Redis } from 'ioredis'
 import { Logger } from 'winston'
 import { AppError, FileNotFound } from '../errors/app-error'
 import { HttpStatusCode } from '../../domain/http-status'
-
-type File = {
-  key: string
-  size: number
-  lastModified: Date
-  contentType: string
-}
+import { File } from '../../domain/file'
+import { Redis } from '../../domain/redis'
 
 export interface IListFileByIdUseCase {
   invoke(file_id: string): Promise<File>
@@ -47,7 +41,7 @@ export class ListFileByIdUseCase implements IListFileByIdUseCase {
         contentType: data.ContentType,
       }
 
-      await this.redisService.set(file_id, JSON.stringify(result), 'EX', 600)
+      this.redisService.set(file_id, JSON.stringify(result), 600)
       return result
     } catch (error) {
       throw new AppError(

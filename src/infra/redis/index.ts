@@ -1,5 +1,5 @@
 import Redis from 'ioredis'
-import { env } from '../infra/config/env'
+import { env } from '../config/env'
 
 export const redis = new Redis({
   password: env.REDIS_PASSWORD,

@@ -1,8 +1,8 @@
 import { S3Client, ListObjectsV2Command, _Object } from '@aws-sdk/client-s3'
-import { Redis } from 'ioredis'
 import { Logger } from 'winston'
 import { AppError } from '../errors/app-error'
 import { HttpStatusCode } from '../../domain/http-status'
+import { Redis } from '../../domain/redis'
 
 export interface IListFilesUseCase {
   invoke(): Promise<_Object[]>
@@ -25,7 +25,7 @@ export class ListFilesUseCase implements IListFilesUseCase {
         return JSON.parse(cacheData)
       }
       const data = await this.s3.send(new ListObjectsV2Command(params))
-      await this.redisService.set('data', JSON.stringify(data), 'EX', 3000)
+      this.redisService.set('data', JSON.stringify(data), 3000)
       return data.Contents
     } catch (error) {
       throw new AppError(
