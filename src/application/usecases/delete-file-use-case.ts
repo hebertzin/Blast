@@ -1,13 +1,14 @@
 import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3'
-import { AppError, FileNotFound } from '../utils/errors/app-error'
-import { HttpStatusCode } from '../utils/http-status'
+import { AppError, FileNotFound } from '../errors/app-error'
+import { HttpStatusCode } from '../../domain/http-status'
 
-export class DeleteFileService {
-  private s3: S3Client
+export interface IDeleteFileUseCase {
+  invoke(file_id: string): Promise<void>
+}
 
-  constructor(s3: S3Client) {
-    this.s3 = s3
-  }
+export class DeleteFileUseCase implements IDeleteFileUseCase {
+  constructor(readonly s3: S3Client) {}
+
   public async invoke(file_id: string): Promise<void> {
     if (!file_id || file_id.trim() == '') {
       throw new FileNotFound('Provide a file id', HttpStatusCode.BadRequest)

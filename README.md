@@ -80,7 +80,6 @@ I did this project to train concepts such as cloud computing using AWS services 
 
   ![file-id](https://github.com/hebertsanto/upload-s3/assets/108555424/7b549579-56cc-4938-a2d7-9373a0d49d38)
 
-
 ## AWS EC2 some images with requests
 
 - **File id request**
