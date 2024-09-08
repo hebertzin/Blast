@@ -27,4 +27,5 @@ export class FileValidatorMiddleware {
   }
 }
 
+//singleton
 export const fileValidatorMiddleware = new FileValidatorMiddleware()

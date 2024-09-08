@@ -14,6 +14,7 @@ export class ListFilesUseCase implements IListFilesUseCase {
     readonly logger: Logger,
     readonly redisService: Redis,
   ) {}
+
   public async invoke(): Promise<_Object[]> {
     const params = {
       Bucket: 'storage-app',
