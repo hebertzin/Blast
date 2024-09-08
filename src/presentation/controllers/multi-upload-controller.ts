@@ -1,15 +1,14 @@
 import { Request, Response } from 'express'
-import { UploadFilesService } from '../services/multi-upload-file-service'
-import { s3 } from '../aws'
-import { HttpStatusCode } from '../utils/http-status'
-import { loggerService } from '../config/logger/winston'
+import {
+  IUploadFilesUseCase,
+  UploadFilesUseCase,
+} from '../../application/usecases/multi-upload-file-use-case'
+import { s3 } from '../../infra/aws'
+import { HttpStatusCode } from '../../domain/http-status'
+import { loggerService } from '../../infra/config/logger/winston'
 
 export class UploadFilesController {
-  private uploadFilesService: UploadFilesService
-
-  constructor(uploadFiles: UploadFilesService) {
-    this.uploadFilesService = uploadFiles
-  }
+  constructor(readonly uploadFilesUseCase: IUploadFilesUseCase) {}
   public async handle(req: Request, res: Response): Promise<Response> {
     try {
       const files = req?.files as Express.Multer.File[]
@@ -18,7 +17,7 @@ export class UploadFilesController {
           message: 'No files sent',
         })
       }
-      await this.uploadFilesService.invoke(files)
+      await this.uploadFilesUseCase.invoke(files)
       return res
         .status(HttpStatusCode.Created)
         .json({ message: 'Files uploaded successfully' })
@@ -28,7 +27,7 @@ export class UploadFilesController {
   }
 }
 
-export const uploadService = new UploadFilesService(s3, loggerService)
+export const uploadService = new UploadFilesUseCase(s3, loggerService)
 
 export const uploadFilesControllerHandler = new UploadFilesController(
   uploadService,

@@ -3,14 +3,15 @@ import { Logger } from 'winston'
 import { FileLengthError, AppError } from '../errors/app-error'
 import { HttpStatusCode } from '../../domain/http-status'
 
-export class UploadFilesService {
-  private s3: S3Client
-  private logger: Logger
+export interface IUploadFilesUseCase {
+  invoke(files: Express.Multer.File[]): Promise<void>
+}
 
-  constructor(s3: S3Client, logger: Logger) {
-    this.s3 = s3
-    this.logger = logger
-  }
+export class UploadFilesUseCase implements IUploadFilesUseCase {
+  constructor(
+    readonly s3: S3Client,
+    readonly logger: Logger,
+  ) {}
   public async invoke(files: Express.Multer.File[]): Promise<void> {
     if (!files || files.length < 2) {
       throw new FileLengthError(

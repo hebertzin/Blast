@@ -7,17 +7,16 @@ import { Logger } from 'winston'
 import { AppError, FileNotFound } from '../errors/app-error'
 import { HttpStatusCode } from '../../domain/http-status'
 
-export class UploadFileService {
-  private s3: S3Client
-  private bucketName: string
-  private logger: Logger
+export interface IUploadFileUseCase {
+  invoke(file: Express.Multer.File): Promise<PutObjectCommandOutput>
+}
 
-  constructor(s3Client: S3Client, bucketName: string, logger: Logger) {
-    this.s3 = s3Client
-    this.bucketName = bucketName
-    this.logger = logger
-  }
-
+export class UploadFileUseCase implements IUploadFileUseCase {
+  constructor(
+    readonly s3Client: S3Client,
+    readonly bucketName: string,
+    readonly logger: Logger,
+  ) {}
   public async invoke(
     file: Express.Multer.File,
   ): Promise<PutObjectCommandOutput> {
@@ -31,7 +30,7 @@ export class UploadFileService {
     }
     try {
       const command = new PutObjectCommand(params)
-      return await this.s3.send(command)
+      return await this.s3Client.send(command)
     } catch (error) {
       this.logger.error('Error uploading file:', error)
       throw new AppError(

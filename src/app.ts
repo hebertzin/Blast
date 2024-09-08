@@ -4,7 +4,7 @@ import { loggerService } from './infra/config/logger/winston'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import compression from 'compression'
-import { HttpStatusCode } from './utils/http-status'
+import { HttpStatusCode } from './domain/http-status'
 
 export class ExpressApp {
   private expressApp: Express

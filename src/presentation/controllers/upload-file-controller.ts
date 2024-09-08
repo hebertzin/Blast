@@ -1,19 +1,18 @@
 import { Request, Response } from 'express'
-import { UploadFileService } from '../services/upload-file-service'
-import { s3 } from '../aws'
-import { HttpStatusCode } from '../utils/http-status'
-import { loggerService } from '../config/logger/winston'
+import {
+  IUploadFileUseCase,
+  UploadFileUseCase,
+} from '../../application/usecases/upload-file-use-case'
+import { s3 } from '../../infra/aws'
+import { HttpStatusCode } from '../../domain/http-status'
+import { loggerService } from '../../infra/config/logger/winston'
 
 export class UploadController {
-  private uploadService: UploadFileService
-
-  constructor(uploadService: UploadFileService) {
-    this.uploadService = uploadService
-  }
+  constructor(readonly uploadFileUseCase: IUploadFileUseCase) {}
   public handle = async (req: Request, res: Response) => {
     try {
       const file = req.file
-      const data = await this.uploadService.invoke(file)
+      const data = await this.uploadFileUseCase.invoke(file)
       return res.status(HttpStatusCode.Created).json(data)
     } catch (error) {
       return res.status(error.code).json({ error })
@@ -21,7 +20,7 @@ export class UploadController {
   }
 }
 
-export const uploadFileService = new UploadFileService(
+export const uploadFileService = new UploadFileUseCase(
   s3,
   'storage-app',
   loggerService,

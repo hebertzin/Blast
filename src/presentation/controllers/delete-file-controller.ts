@@ -1,18 +1,17 @@
 import { s3 } from '../../infra/aws'
-import { DeleteFileService } from '../../application/usecases/delete-files-service'
+import {
+  DeleteFileUseCase,
+  IDeleteFileUseCase,
+} from '../../application/usecases/delete-file-use-case'
 import { Request, Response } from 'express'
 import { HttpStatusCode } from '../../domain/http-status'
 
 export class DeleteFileController {
-  private deleteFileService: DeleteFileService
-
-  constructor(deleteService: DeleteFileService) {
-    this.deleteFileService = deleteService
-  }
+  constructor(private readonly deleteFileUseCase: IDeleteFileUseCase) {}
   public async handle(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params
-      await this.deleteFileService.invoke(id)
+      await this.deleteFileUseCase.invoke(id)
       return res
         .status(HttpStatusCode.Ok)
         .json({ message: 'File deleted successfully' })
@@ -23,5 +22,5 @@ export class DeleteFileController {
 }
 
 export const deleteFileControllerHandler = new DeleteFileController(
-  new DeleteFileService(s3),
+  new DeleteFileUseCase(s3),
 )
