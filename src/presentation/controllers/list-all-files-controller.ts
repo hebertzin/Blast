@@ -24,7 +24,3 @@ export class ListFilesController implements Controller {
     }
   }
 }
-
-export const listFilesControllerHandler = new ListFilesController(
-  new ListFilesUseCase(s3, loggerService, redis),
-)

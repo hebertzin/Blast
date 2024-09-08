@@ -1,8 +1,4 @@
-import { s3 } from '../../infra/aws'
-import {
-  DeleteFileUseCase,
-  IDeleteFileUseCase,
-} from '../../application/usecases/delete-file-use-case'
+import { IDeleteFileUseCase } from '../../application/usecases/delete-file-use-case'
 import { Request } from 'express'
 import { HttpStatusCode } from '../../domain/http-status'
 import { Controller, HttpResponse } from '../../domain/controller'
@@ -25,7 +21,3 @@ export class DeleteFileController implements Controller {
     }
   }
 }
-
-export const deleteFileControllerHandler = new DeleteFileController(
-  new DeleteFileUseCase(s3),
-)

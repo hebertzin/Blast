@@ -1,12 +1,12 @@
 import { Router } from 'express'
 import { storage } from '../../infra/multer'
-import { uploadFilesControllerHandler } from '../controllers/multi-upload-controller'
-import { deleteFileControllerHandler } from '../controllers/delete-file-controller'
-import { listFilesControllerHandler } from '../controllers/list-all-files-controller'
-import { listFileByIdControllerHandler } from '../controllers/list-file-by-id-controller'
 import { fileValidatorMiddleware } from '../middleware/validate-files'
-import { Request, Response } from 'express'
-import { uploadFileControllerHandler } from '../controllers/upload-file-controller'
+import { adaptRoute } from '../../adapters/express-adapter'
+import { makeListFileController } from '../../infra/factories/controllers/list-file-by-id'
+import { makeUploadFileController } from '../../infra/factories/controllers/upload-file'
+import { makeUploadFilesController } from '../../infra/factories/controllers/upload-files'
+import { makeListFilesController } from '../../infra/factories/controllers/list-all-files'
+import { makeDeleteFileController } from '../../infra/factories/controllers/delete-file'
 
 export const upload = Router()
 
@@ -14,28 +14,18 @@ upload.post(
   '/files/upload',
   storage.single('file'),
   fileValidatorMiddleware.validateFile.bind(fileValidatorMiddleware),
-  async (req: Request, res: Response) => {
-    await uploadFileControllerHandler.handle(req, res)
-  },
+  adaptRoute(makeUploadFileController()),
 )
 
 upload.post(
   '/files/multi-upload',
   storage.array('files'),
   fileValidatorMiddleware.validateFile.bind(fileValidatorMiddleware),
-  async (req: Request, res: Response) => {
-    await uploadFilesControllerHandler.handle(req, res)
-  },
+  adaptRoute(makeUploadFilesController()),
 )
 
-upload.delete('/files/:id', async (req: Request, res: Response) => {
-  return await deleteFileControllerHandler.handle(req, res)
-})
+upload.delete('/files/:id', adaptRoute(makeDeleteFileController()))
 
-upload.get('/files', async (req: Request, res: Response) => {
-  return listFilesControllerHandler.handle(req, res)
-})
+upload.get('/files', adaptRoute(makeListFilesController()))
 
-upload.get('/files/:id', async (req: Request, res: Response) => {
-  return await listFileByIdControllerHandler.handle(req, res)
-})
+upload.get('/files/:id', adaptRoute(makeListFileController()))
