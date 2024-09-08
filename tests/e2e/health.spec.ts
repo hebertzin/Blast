@@ -1,6 +1,6 @@
 import request from 'supertest'
-import { HttpStatusCode } from '../../utils/http-status'
-import { ExpressApp as app } from '../../app'
+import { HttpStatusCode } from '../../src/domain/http-status'
+import { ExpressApp as app } from '../../src/app'
 
 describe('/health', () => {
   it('Must return status 200', async () => {

@@ -1,7 +1,6 @@
 import request from 'supertest'
-import { HttpStatusCode } from '../../utils/http-status'
-import { ExpressApp as app } from '../../app'
-
+import { HttpStatusCode } from '../../src/domain/http-status'
+import { ExpressApp as app } from '../../src/app'
 describe('/api/v1/files/:id', () => {
   it('Must return file correctly with all properties', async () => {
     const fileId = 'profile.jpeg'
