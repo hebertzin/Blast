@@ -1,6 +1,6 @@
 import request from 'supertest'
-import { ExpressApp as app } from '../../app'
-import { HttpStatusCode } from '../../utils/http-status'
+import { HttpStatusCode } from '../../src/domain/http-status'
+import { ExpressApp as app } from '../../src/app'
 
 describe('/api/v1/files', () => {
   it('Must return all files correctly', async () => {
