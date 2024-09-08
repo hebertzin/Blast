@@ -7,11 +7,7 @@ export interface IDeleteFileUseCase {
 }
 
 export class DeleteFileUseCase implements IDeleteFileUseCase {
-  private s3: S3Client
-
-  constructor(s3: S3Client) {
-    this.s3 = s3
-  }
+  constructor(readonly s3: S3Client) {}
   public async invoke(file_id: string): Promise<void> {
     if (!file_id || file_id.trim() == '') {
       throw new FileNotFound('Provide a file id', HttpStatusCode.BadRequest)

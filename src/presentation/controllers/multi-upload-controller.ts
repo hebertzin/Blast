@@ -6,29 +6,21 @@ import {
 import { s3 } from '../../infra/aws'
 import { HttpStatusCode } from '../../domain/http-status'
 import { loggerService } from '../../infra/config/logger/winston'
+import { Controller, HttpResponse } from '../../domain/controller'
 
-export class UploadFilesController {
+export class UploadFilesController implements Controller {
   constructor(readonly uploadFilesUseCase: IUploadFilesUseCase) {}
-  public async handle(req: Request, res: Response): Promise<Response> {
+  public async handle(req: Request): Promise<HttpResponse> {
     try {
       const files = req?.files as Express.Multer.File[]
-      if (!files || files.length === 0) {
-        return res.status(HttpStatusCode.BadRequest).json({
-          message: 'No files sent',
-        })
-      }
       await this.uploadFilesUseCase.invoke(files)
-      return res
-        .status(HttpStatusCode.Created)
-        .json({ message: 'Files uploaded successfully' })
+      return { msg: 'Files uploaded', statusCode: HttpStatusCode.Created }
     } catch (error) {
-      return res.status(error.code).json({ error })
+      return { msg: error.message, statusCode: error.statusCode }
     }
   }
 }
-
 export const uploadService = new UploadFilesUseCase(s3, loggerService)
-
 export const uploadFilesControllerHandler = new UploadFilesController(
   uploadService,
 )

@@ -7,17 +7,20 @@ import { s3 } from '../../infra/aws'
 import { HttpStatusCode } from '../../domain/http-status'
 import { loggerService } from '../../infra/config/logger/winston'
 import { redis } from '../../infra/redis'
+import { Controller, HttpResponse } from '../../domain/controller'
 
-export class ListFilesController {
+export class ListFilesController implements Controller {
   constructor(readonly listFilesUseCase: IListFilesUseCase) {}
-  public async handle(req: Request, res: Response): Promise<Response> {
+  public async handle(req: Request): Promise<HttpResponse> {
     try {
       const files = await this.listFilesUseCase.invoke()
-      return res.status(HttpStatusCode.Ok).json({
-        files: files,
-      })
+      return {
+        statusCode: HttpStatusCode.Ok,
+        msg: 'All files',
+        body: files,
+      }
     } catch (error) {
-      return res.status(error.code).json({ error })
+      return { msg: error.message, statusCode: error.statusCode }
     }
   }
 }

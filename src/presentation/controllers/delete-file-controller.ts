@@ -3,20 +3,25 @@ import {
   DeleteFileUseCase,
   IDeleteFileUseCase,
 } from '../../application/usecases/delete-file-use-case'
-import { Request, Response } from 'express'
+import { Request } from 'express'
 import { HttpStatusCode } from '../../domain/http-status'
+import { Controller, HttpResponse } from '../../domain/controller'
 
-export class DeleteFileController {
+export class DeleteFileController implements Controller {
   constructor(private readonly deleteFileUseCase: IDeleteFileUseCase) {}
-  public async handle(req: Request, res: Response): Promise<Response> {
+  public async handle(req: Request): Promise<HttpResponse> {
     try {
       const { id } = req.params
       await this.deleteFileUseCase.invoke(id)
-      return res
-        .status(HttpStatusCode.Ok)
-        .json({ message: 'File deleted successfully' })
+      return {
+        msg: 'File deleted successfully',
+        statusCode: HttpStatusCode.Ok,
+      }
     } catch (error) {
-      return res.status(error.code).json({ error })
+      return {
+        msg: error.message,
+        statusCode: error.statusCode,
+      }
     }
   }
 }
