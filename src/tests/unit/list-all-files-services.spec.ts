@@ -1,5 +1,5 @@
 import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3'
-import { ListFilesService } from '../../services/list-all-files-service'
+import { ListFilesService } from '../../application/usecases/list-all-files-service'
 import { env } from '../../config/env'
 import { loggerService } from '../../config/logger/winston'
 import { redis } from '../../redis'
