@@ -1,11 +1,6 @@
 import { Request } from 'express'
-import {
-  IUploadFilesUseCase,
-  UploadFilesUseCase,
-} from '../../application/usecases/multi-upload-file-use-case'
-import { s3 } from '../../infra/aws'
+import { IUploadFilesUseCase } from '../../application/usecases/multi-upload-file-use-case'
 import { HttpStatusCode } from '../../domain/http-status'
-import { loggerService } from '../../infra/config/logger/winston'
 import { Controller, HttpResponse } from '../../domain/controller'
 
 export class UploadFilesController implements Controller {
@@ -20,7 +15,3 @@ export class UploadFilesController implements Controller {
     }
   }
 }
-export const uploadService = new UploadFilesUseCase(s3, loggerService)
-export const uploadFilesControllerHandler = new UploadFilesController(
-  uploadService,
-)

@@ -1,12 +1,6 @@
-import { Request, Response } from 'express'
-import {
-  IListFilesUseCase,
-  ListFilesUseCase,
-} from '../../application/usecases/list-files-use-case'
-import { s3 } from '../../infra/aws'
+import { Request } from 'express'
+import { IListFilesUseCase } from '../../application/usecases/list-files-use-case'
 import { HttpStatusCode } from '../../domain/http-status'
-import { loggerService } from '../../infra/config/logger/winston'
-import { redis } from '../../infra/redis'
 import { Controller, HttpResponse } from '../../domain/controller'
 
 export class ListFilesController implements Controller {
