@@ -8,7 +8,6 @@ import { Redis } from '../domain/redis'
 export interface IListFileByIdUseCase {
   invoke(file_id: string): Promise<File>
 }
-
 export class ListFileByIdUseCase implements IListFileByIdUseCase {
   constructor(
     readonly s3: S3Client,

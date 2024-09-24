@@ -10,7 +10,6 @@ import { HttpStatusCode } from '../domain/http-status'
 export interface IUploadFileUseCase {
   invoke(file: Express.Multer.File): Promise<PutObjectCommandOutput>
 }
-
 export class UploadFileUseCase implements IUploadFileUseCase {
   constructor(
     readonly s3Client: S3Client,

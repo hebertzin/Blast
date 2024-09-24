@@ -1,7 +1,6 @@
-import { ExpressApp } from './api/presentation/app'
-import { env } from './infra/config/env'
+import { ExpressApp } from './app'
+import { appConfig } from './config/config'
 
 export const app = new ExpressApp()
 
-const port = env.PORT || 5000
-app.start(port)
+app.start(appConfig.port)

@@ -6,7 +6,6 @@ import { HttpStatusCode } from '../domain/http-status'
 export interface IUploadFilesUseCase {
   invoke(files: Express.Multer.File[]): Promise<void>
 }
-
 export class UploadFilesUseCase implements IUploadFilesUseCase {
   constructor(
     readonly s3: S3Client,
@@ -19,7 +18,6 @@ export class UploadFilesUseCase implements IUploadFilesUseCase {
         HttpStatusCode.BadRequest,
       )
     }
-
     const FilesToUpload = files.map(async (file: Express.Multer.File) => {
       if (!file || !file.buffer || !file.originalname) {
         this.logging.warn('Invalid file...')
@@ -40,7 +38,6 @@ export class UploadFilesUseCase implements IUploadFilesUseCase {
         )
       }
     })
-
     await Promise.all(FilesToUpload)
   }
 }

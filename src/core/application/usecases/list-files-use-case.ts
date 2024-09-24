@@ -7,14 +7,12 @@ import { Redis } from '../domain/redis'
 export interface IListFilesUseCase {
   invoke(): Promise<_Object[]>
 }
-
 export class ListFilesUseCase implements IListFilesUseCase {
   constructor(
     readonly s3: S3Client,
     readonly logging: Logger,
     readonly redisService: Redis,
   ) {}
-
   public async invoke(): Promise<_Object[]> {
     const params = {
       Bucket: 'storage-app',
