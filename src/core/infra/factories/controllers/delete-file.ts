@@ -1,5 +1,5 @@
-import { Controller } from '../../../core/application/domain/controller'
-import { DeleteFileController } from '../../../presentation/controllers/delete-file-controller'
+import { DeleteFileController } from '../../../../api/presentation/controllers/delete-file-controller'
+import { Controller } from '../../../application/domain/controller'
 import { makeDeleteFileUseCase } from '../usecases/delete-file'
 
 export const makeDeleteFileController = (): Controller => {

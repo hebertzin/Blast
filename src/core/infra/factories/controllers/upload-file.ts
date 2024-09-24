@@ -1,5 +1,5 @@
-import { Controller } from '../../../core/application/domain/controller'
-import { UploadController } from '../../../presentation/controllers/upload-file-controller'
+import { UploadController } from '../../../../api/presentation/controllers/upload-file-controller'
+import { Controller } from '../../../application/domain/controller'
 import { makeUploadFileUseCase } from '../usecases/upload-file'
 
 export const makeUploadFileController = (): Controller => {

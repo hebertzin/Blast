@@ -1,5 +1,5 @@
 import { redis } from '.'
-import { Redis } from '../../core/application/domain/redis'
+import { Redis } from '../../application/domain/redis'
 
 export class RedisImplementation implements Redis {
   async set(key: string, value: string, expiration: number): Promise<void> {
