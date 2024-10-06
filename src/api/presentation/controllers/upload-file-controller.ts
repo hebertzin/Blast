@@ -7,7 +7,7 @@ import { IUploadFileUseCase } from '../../../core/application/domain/usecases/up
 import { HttpStatusCode } from '../../../core/application/domain/http-status'
 
 export class UploadController implements Controller {
-  constructor(readonly uploadFileUseCase: IUploadFileUseCase) {}
+  constructor(private readonly uploadFileUseCase: IUploadFileUseCase) {}
   public handle = async (req: Request): Promise<HttpResponse> => {
     try {
       const file = req.file

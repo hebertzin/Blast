@@ -7,7 +7,7 @@ import { HttpStatusCode } from '../../../core/application/domain/http-status'
 import { IListFileByIdUseCase } from '../../../core/application/domain/usecases/list-file-by-id'
 
 export class ListFileByIdController implements Controller {
-  constructor(readonly listFileByIdUseCase: IListFileByIdUseCase) {}
+  constructor(private readonly listFileByIdUseCase: IListFileByIdUseCase) {}
   public async handle(req: Request): Promise<HttpResponse> {
     try {
       const { id } = req.params
