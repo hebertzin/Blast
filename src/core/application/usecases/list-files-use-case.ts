@@ -3,10 +3,8 @@ import { Logger } from 'winston'
 import { AppError } from '../errors/app-error'
 import { HttpStatusCode } from '../domain/http-status'
 import { Redis } from '../domain/redis'
+import { IListFilesUseCase } from '../domain/usecases/list-all-files'
 
-export interface IListFilesUseCase {
-  invoke(): Promise<_Object[]>
-}
 export class ListFilesUseCase implements IListFilesUseCase {
   constructor(
     readonly s3: S3Client,

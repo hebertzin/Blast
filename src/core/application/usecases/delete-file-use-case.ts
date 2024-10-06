@@ -1,10 +1,7 @@
 import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3'
 import { AppError, FileNotFound } from '../errors/app-error'
 import { HttpStatusCode } from '../domain/http-status'
-
-export interface IDeleteFileUseCase {
-  invoke(file_id: string): Promise<void>
-}
+import { IDeleteFileUseCase } from '../domain/usecases/delete-file'
 
 export class DeleteFileUseCase implements IDeleteFileUseCase {
   constructor(readonly s3: S3Client) {}

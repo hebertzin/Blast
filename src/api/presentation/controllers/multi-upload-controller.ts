@@ -1,10 +1,10 @@
 import { Request } from 'express'
-import { IUploadFilesUseCase } from '../../../core/application/usecases/multi-upload-file-use-case'
 import {
   Controller,
   HttpResponse,
 } from '../../../core/application/domain/controller'
 import { HttpStatusCode } from '../../../core/application/domain/http-status'
+import { IUploadFilesUseCase } from '../../../core/application/domain/usecases/upload-files'
 
 export class UploadFilesController implements Controller {
   constructor(readonly uploadFilesUseCase: IUploadFilesUseCase) {}

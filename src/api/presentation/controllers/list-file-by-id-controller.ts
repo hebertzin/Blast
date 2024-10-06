@@ -1,10 +1,10 @@
 import { Request } from 'express'
-import { IListFileByIdUseCase } from '../../../core/application/usecases/list-file-by-id-use-case'
 import {
   Controller,
   HttpResponse,
 } from '../../../core/application/domain/controller'
 import { HttpStatusCode } from '../../../core/application/domain/http-status'
+import { IListFileByIdUseCase } from '../../../core/application/domain/usecases/list-file-by-id'
 
 export class ListFileByIdController implements Controller {
   constructor(readonly listFileByIdUseCase: IListFileByIdUseCase) {}

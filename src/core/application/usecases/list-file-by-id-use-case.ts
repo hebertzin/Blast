@@ -4,10 +4,8 @@ import { AppError, FileNotFound } from '../errors/app-error'
 import { HttpStatusCode } from '../domain/http-status'
 import { File } from '../domain/file'
 import { Redis } from '../domain/redis'
+import { IListFileByIdUseCase } from '../domain/usecases/list-file-by-id'
 
-export interface IListFileByIdUseCase {
-  invoke(file_id: string): Promise<File>
-}
 export class ListFileByIdUseCase implements IListFileByIdUseCase {
   constructor(
     readonly s3: S3Client,

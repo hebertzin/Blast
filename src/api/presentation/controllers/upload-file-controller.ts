@@ -3,7 +3,7 @@ import {
   Controller,
   HttpResponse,
 } from '../../../core/application/domain/controller'
-import { IUploadFileUseCase } from '../../../core/application/usecases/upload-file-use-case'
+import { IUploadFileUseCase } from '../../../core/application/domain/usecases/upload-file'
 import { HttpStatusCode } from '../../../core/application/domain/http-status'
 
 export class UploadController implements Controller {

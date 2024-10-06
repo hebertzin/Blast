@@ -6,10 +6,8 @@ import {
 import { Logger } from 'winston'
 import { AppError, FileNotFound } from '../errors/app-error'
 import { HttpStatusCode } from '../domain/http-status'
+import { IUploadFileUseCase } from '../domain/usecases/upload-file'
 
-export interface IUploadFileUseCase {
-  invoke(file: Express.Multer.File): Promise<PutObjectCommandOutput>
-}
 export class UploadFileUseCase implements IUploadFileUseCase {
   constructor(
     readonly s3Client: S3Client,
