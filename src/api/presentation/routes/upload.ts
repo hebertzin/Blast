@@ -13,14 +13,14 @@ export const uploadManagementRoutes = Router()
 uploadManagementRoutes.post(
   '/files/upload',
   storage.single('file'),
-  fileValidatorMiddleware.validateFile.bind(fileValidatorMiddleware),
+  fileValidatorMiddleware.validateFile(),
   adaptRoute(makeUploadFileController()),
 )
 
 uploadManagementRoutes.post(
   '/files/multi-upload',
   storage.array('files'),
-  fileValidatorMiddleware.validateFile.bind(fileValidatorMiddleware),
+  fileValidatorMiddleware.validateFile(),
   adaptRoute(makeUploadFilesController()),
 )
 
