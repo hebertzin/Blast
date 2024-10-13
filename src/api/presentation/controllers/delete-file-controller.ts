@@ -1,10 +1,10 @@
 import { Request } from 'express'
-import { HttpStatusCode } from '../../../core/application/domain/http-status'
+import { HttpStatusCode } from '../../../core/application/domains/http-status'
 import {
   Controller,
   HttpResponse,
-} from '../../../core/application/domain/controller'
-import { IDeleteFileUseCase } from '../../../core/application/domain/usecases/delete-file'
+} from '../../../core/application/domains/controller'
+import { IDeleteFileUseCase } from '../../../core/application/domains/usecases/delete-file'
 
 export class DeleteFileController implements Controller {
   constructor(private readonly deleteFileUseCase: IDeleteFileUseCase) {}

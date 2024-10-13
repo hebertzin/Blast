@@ -1,9 +1,9 @@
 import { S3Client, ListObjectsV2Command, _Object } from '@aws-sdk/client-s3'
 import { Logger } from 'winston'
 import { AppError } from '../errors/app-error'
-import { HttpStatusCode } from '../domain/http-status'
-import { Redis } from '../domain/redis'
-import { IListFilesUseCase } from '../domain/usecases/list-all-files'
+import { HttpStatusCode } from '../domains/http-status'
+import { Redis } from '../domains/redis'
+import { IListFilesUseCase } from '../domains/usecases/list-all-files'
 
 export class ListFilesUseCase implements IListFilesUseCase {
   constructor(

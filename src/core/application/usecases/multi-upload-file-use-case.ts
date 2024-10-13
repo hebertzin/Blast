@@ -1,8 +1,8 @@
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import { Logger } from 'winston'
 import { FileLengthError, AppError } from '../errors/app-error'
-import { HttpStatusCode } from '../domain/http-status'
-import { IUploadFilesUseCase } from '../domain/usecases/upload-files'
+import { HttpStatusCode } from '../domains/http-status'
+import { IUploadFilesUseCase } from '../domains/usecases/upload-files'
 
 export class UploadFilesUseCase implements IUploadFilesUseCase {
   constructor(

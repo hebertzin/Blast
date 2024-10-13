@@ -2,9 +2,9 @@ import { Request } from 'express'
 import {
   Controller,
   HttpResponse,
-} from '../../../core/application/domain/controller'
-import { IUploadFileUseCase } from '../../../core/application/domain/usecases/upload-file'
-import { HttpStatusCode } from '../../../core/application/domain/http-status'
+} from '../../../core/application/domains/controller'
+import { IUploadFileUseCase } from '../../../core/application/domains/usecases/upload-file'
+import { HttpStatusCode } from '../../../core/application/domains/http-status'
 
 export class UploadController implements Controller {
   constructor(private readonly uploadFileUseCase: IUploadFileUseCase) {}

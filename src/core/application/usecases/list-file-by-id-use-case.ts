@@ -1,10 +1,10 @@
 import { S3Client, HeadObjectCommand } from '@aws-sdk/client-s3'
 import { Logger } from 'winston'
 import { AppError, FileNotFound } from '../errors/app-error'
-import { HttpStatusCode } from '../domain/http-status'
-import { File } from '../domain/file'
-import { Redis } from '../domain/redis'
-import { IListFileByIdUseCase } from '../domain/usecases/list-file-by-id'
+import { HttpStatusCode } from '../domains/http-status'
+import { File } from '../domains/file'
+import { Redis } from '../domains/redis'
+import { IListFileByIdUseCase } from '../domains/usecases/list-file-by-id'
 
 export class ListFileByIdUseCase implements IListFileByIdUseCase {
   constructor(

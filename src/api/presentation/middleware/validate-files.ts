@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import { HttpStatusCode } from '../../../core/application/domain/http-status'
+import { HttpStatusCode } from '../../../core/application/domains/http-status'
 
 export class FileValidatorMiddleware {
   public validateFile() {

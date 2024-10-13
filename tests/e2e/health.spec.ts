@@ -1,5 +1,5 @@
 import request from 'supertest'
-import { HttpStatusCode } from '../../src/core/application/domain/http-status'
+import { HttpStatusCode } from '../../src/core/application/domains/http-status'
 import { ExpressApp as app } from '../../src/api/presentation/app'
 
 describe('/health', () => {

@@ -2,9 +2,9 @@ import { Request } from 'express'
 import {
   Controller,
   HttpResponse,
-} from '../../../core/application/domain/controller'
-import { HttpStatusCode } from '../../../core/application/domain/http-status'
-import { IListFilesUseCase } from '../../../core/application/domain/usecases/list-all-files'
+} from '../../../core/application/domains/controller'
+import { HttpStatusCode } from '../../../core/application/domains/http-status'
+import { IListFilesUseCase } from '../../../core/application/domains/usecases/list-all-files'
 
 export class ListFilesController implements Controller {
   constructor(private readonly listFilesUseCase: IListFilesUseCase) {}
