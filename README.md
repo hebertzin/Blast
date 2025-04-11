@@ -1,103 +1,142 @@
-## Upload-s3
+# Blast upload
 
 ## Overview
 
-I did this project to train concepts such as cloud computing using AWS services and I carried out the project using object-oriented programming and following good practices in software development.
+This project was built to practice **cloud computing** concepts using AWS services. It follows **object-oriented programming** principles and applies software development best practices, focusing on scalability and code quality.
 
-## **Techs**
+---
 
-- **Node js**
-- **Typescript**
-- **AWS-SDK**
-- **EC2**
-- **S3**
-- **Redis**
-- **Docker**
-- **Express**
-- **Git**
-- **Github actions**
-- **Husky**
-- **Prettier**
-- **Eslint**
-- **Zod**
-- **Jest**
-- **Supertest**
+## Tech Stack
 
-## **Features**
+- Node.js  
+- TypeScript  
+- AWS SDK  
+- EC2  
+- S3  
+- Redis  
+- Docker  
+- Express  
+- Git  
+- GitHub Actions  
+- Husky  
+- Prettier  
+- ESLint  
+- Zod  
+- Jest  
+- Supertest  
 
-- [x] It is possible to upload a file
-- [x] It is possible to upload multiple files at a time
-- [x] It is possible to delete a file
-- [x] It is possible to get data from a file
-- [x] It is possible to list all files
-- [ ] It is possible to list files by type. ex: **Pdf**, **Jpeg** .
+---
 
-## **Endpoints**
+## Features
 
-- **POST** `/api/v1/files/upload`: Uploads a single file to the cloud
-- **POST** `/api/v1/files/multi-upload` : Uploads multiple files to the cloud
-- **GET** `/api/v1/files/:id`: Returns data from a file, e.g. bytes, name, among others...
-- **GET** `/api/v1/files` : Returns all files
-- **DELETE** `/api/v1/files/:id` : Deletes a file
+- [x] Upload a single file  
+- [x] Upload multiple files at once  
+- [x] Delete files  
+- [x] Get file metadata (name, size, etc.)  
+- [x] List all files  
+- [ ] Filter files by type (e.g., PDF, JPEG)  
 
-## How to run this project
+---
 
-- Make sure you have the **node**, **docker** installed
-- Clone this repository `git clone: https://github.com/hebertsanto/upload-s3.git`
+## API Endpoints
 
-- Navigate to the project and run the following command `npm install`
-- Create a `.env` file and create environment variables with your AWS s3 credentials, don't forget that.
-- See how to define the variables in the `.env.exemple` file
-- Then just run the server with the following command: `npm run dev`
+- `POST /api/v1/files/upload`  
+  Upload a single file to S3.
 
-## Run with docker
+- `POST /api/v1/files/multi-upload`  
+  Upload multiple files at once to S3.
 
-- In the json package I created a script to run docker, all you need to do is run the command `npm run docker:build`
-- After that, the application image will be created.
+- `GET /api/v1/files/:id`  
+  Get file metadata by ID.
 
-## Running tests
+- `GET /api/v1/files`  
+  List all uploaded files.
 
-- You can run integration tests with this script `npm run tests:integration`
-- You can run unit tests with this script `npm run tests:unit`
+- `DELETE /api/v1/files/:id`  
+  Delete a file by ID.
 
-## Pipilines/Github Actions
+---
 
-- **Lint**
+## Running Locally
 
-  In this pipeline I implemented code lint to maintain the quality and organization of the code
+1. Make sure you have **Node.js** and **Docker** installed.
+2. Clone the repository:  
+   `git clone https://github.com/hebertsanto/upload-s3.git`
+3. Install the dependencies:  
+   `npm install`
+4. Create a `.env` file with your AWS S3 credentials.  
+   You can use `.env.exemple` as a reference.
+5. Start the server:  
+   `npm run dev`
 
-- **Build**
+---
 
-  In this pipeline the code is transpiled to JavaScript and the project image is created
+## Running with Docker
 
-## AWS console with some files
+1. Build the image:  
+   `npm run docker:build`
+2. The application Docker image will be created automatically.
 
-![Captura de tela de 2024-04-06 20-31-11](https://github.com/hebertsanto/upload-s3/assets/108555424/a3a31951-33d3-4955-8458-62c30c4ad5d4)
+---
 
-## AWS EC2 some images with requests
+## Running Tests
 
-- **File id request**
+- Run integration tests:  
+  `npm run tests:integration`
 
-  ![file-id](https://github.com/hebertsanto/upload-s3/assets/108555424/7b549579-56cc-4938-a2d7-9373a0d49d38)
+- Run unit tests:  
+  `npm run tests:unit`
 
-## AWS EC2 some images with requests
+---
 
-- **File id request**
+## CI/CD (GitHub Actions)
 
-  ![file-id](https://github.com/hebertsanto/upload-s3/assets/108555424/7b549579-56cc-4938-a2d7-9373a0d49d38)
+### Lint
+This pipeline ensures code style consistency and quality using ESLint and Prettier.
 
-- **Health route**
+### Build
+Transpiles TypeScript to JavaScript and builds the Docker image of the project.
 
-  ![health-route](https://github.com/hebertsanto/upload-s3/assets/108555424/dda7b577-752c-4d5a-9f63-0fd7d33c7a6b)
+---
+
+## AWS S3 Console - Uploaded Files
+
+![Screenshot](https://github.com/hebertsanto/upload-s3/assets/108555424/a3a31951-33d3-4955-8458-62c30c4ad5d4)
+
+---
+
+## AWS EC2 - Request Samples
+
+### File by ID
+
+![file-id](https://github.com/hebertsanto/upload-s3/assets/108555424/7b549579-56cc-4938-a2d7-9373a0d49d38)
+
+### Health Check Route
+
+![health-route](https://github.com/hebertsanto/upload-s3/assets/108555424/dda7b577-752c-4d5a-9f63-0fd7d33c7a6b)
+
+---
+
+## Future Improvements
+
+This project has room for improvement and evolution. Some next steps include:
+
+- Decouple external services (e.g., AWS SDK, Redis) using dependency inversion.
+- Add a domain layer following Domain-Driven Design (DDD) principles.
+- Refactor to a cleaner, layered architecture.
+- Improve unit and integration test coverage.
+
+---
 
 ## References
 
-[EC2 article](https://medium.com/@sahdevgrover02/understanding-amazon-ec2-cb702b53c9ca)
+- [EC2 Article](https://medium.com/@sahdevgrover02/understanding-amazon-ec2-cb702b53c9ca)  
+- [S3 Official Docs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html)  
+- [EC2 YouTube Playlist (Portuguese)](https://www.youtube.com/watch?v=HiBCv9DolxI&list=PLtL97Owd1gkQ0dfqGW8OtJ-155Gs67Ecz)  
 
-[S3 docs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html)
-
-[Playlist EC2 youtube course(Portuguese)](https://www.youtube.com/watch?v=HiBCv9DolxI&list=PLtL97Owd1gkQ0dfqGW8OtJ-155Gs67Ecz)
+---
 
 ## Conclusion
 
-By doing this project I managed to acquire a lot of knowledge about Docker and go deeper into how it works, I also learned concepts in cloud computing and application deployment, as I wanted to simulate an environment with many requests I also found it interesting to implement caching with redis, this is a project There's a lot to improve so I'll keep improving it
+Through this project, I gained hands-on experience with **Docker**, deepened my understanding of **cloud computing**, and explored **application deployment** with AWS. To simulate a real-world high-traffic scenario, I also implemented **caching with Redis**. This is a project I plan to keep improving as I learn more.
+
